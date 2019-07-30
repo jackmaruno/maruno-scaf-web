@@ -1,0 +1,54 @@
+// mixins
+//font-style
+@mixin font-style ($size, $line, $b-margin, $t-margin) {
+    font-size: $size;
+    line-height: $line;
+    margin-bottom: $b-margin;
+    margin-top: $t-margin;
+}
+
+//transform
+@mixin transform($valor) {
+    -webkit-transform: $valor;
+    -ms-transform: $valor;
+    transform: $valor;
+}
+
+//user-select
+@mixin user-select() {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+//appearance
+@mixin appearance() {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+// transition 
+@mixin transition($valor) {
+    -webkit-transition: $valor;
+    transition: $valor;
+}
+
+//tooltip
+@mixin tooltip-after() {
+    content: "";
+    position: absolute;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+}
+
+//more
+@mixin more-after() {
+    content: "";
+    position: absolute;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+}

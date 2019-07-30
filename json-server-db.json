@@ -1,0 +1,262 @@
+{
+  "usuario-logado": {
+    "codigo": 1,
+    "nome": "Willian Maruno",
+    "login": "maruno",
+    "codPerfil": 1,
+    "nomePerfil": "Administrador"
+  },
+  "grupos": [
+    {
+      "codigo": 1,
+      "nome": "Moradia",
+      "listCategorias": [
+        {
+          "codigo": 1,
+          "nome": "Aluguel",
+          "grupo": {
+            "codigo": 1,
+            "nome": "Moradia"
+          }
+        }
+      ]
+    },
+    {
+      "codigo": 3,
+      "nome": "Transporte",
+      "listCategorias": [
+        {
+          "codigo": 18,
+          "nome": "Combustível",
+          "grupo": {
+            "codigo": 3,
+            "nome": "Transporte"
+          }
+        }
+      ]
+    }
+  ],
+  "periodos": [
+    {
+      "numero": 1,
+      "nome": "Mensal"
+    },
+    {
+      "numero": 2,
+      "nome": "Bimestral"
+    },
+    {
+      "numero": 3,
+      "nome": "Trimestral"
+    }
+  ],
+  "tags": [
+    {
+      "codigo": 1,
+      "id": 1,
+      "nome": "Miguel",
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "check": false
+    },
+    {
+      "codigo": 2,
+      "nome": "Lilian",
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "id": 2
+    },
+    {
+      "codigo": 3,
+      "nome": "Silvia",
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "id": 3
+    },
+    {
+      "codigo": 4,
+      "nome": "Gêmeos",
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "id": 4
+    },
+    {
+      "codigo": 5,
+      "nome": "Mãe",
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "id": 5
+    }
+  ],
+  "agendamentos": [
+    {
+      "codigo": 1,
+      "nome": "quadra 04 Norte Casa 85, Brazlândia-DF",
+      "descricao": "",
+      "tags": "Lilian;Silvia;",
+      "dataInicio": "10/10/2018",
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "ativo": false,
+      "categoria": {
+        "codigo": 1,
+        "nome": "Aluguel",
+        "grupo": {
+          "codigo": 1,
+          "nome": "Moradia"
+        }
+      },
+      "periodo": {
+        "numero": 1,
+        "nome": "Mensal"
+      },
+      "id": 1
+    }
+  ],
+  "cartoes": [
+    {
+      "codigo": 1,
+      "bandeira": "MASTER",
+      "nome": "Sicoob 7262",
+      "vencimento": 10,
+      "fechamento": 25,
+      "dataInclusao": "29/12/2018 14:34",
+      "dataAlteracao": "30/12/2018 18:11",
+      "ativo": true,
+      "id": 1
+    }
+  ],
+  "faturas": [
+    {
+      "dataReferencia": "29/12/2018",
+      "dataFatura": "29/12/2018",
+      "valor": 100
+    }
+  ],
+  "parcelas": [
+    {
+      "id": "29/12/2018",
+      "codigo": 1,
+      "numero": 1,
+      "data": "29/12/2018",
+      "valor": 100
+    }
+  ],
+  "lancamentos": [
+    {
+      "codigo": 1,
+      "dataReferencia": "18/01/2019",
+      "dataLancamento": "19/01/2019 19:00",
+      "tags": "Miguel;",
+      "valor": "35,62",
+      "valorPrevisto": "35,62",
+      "descricao": "swdewdew efwfwfewf",
+      "categoria": {
+        "codigo": 1,
+        "nome": "Aluguel",
+        "grupo": {
+          "codigo": 1,
+          "nome": "Moradia"
+        }
+      },
+      "id": 1
+    } 
+  ],
+  "corporativo-sistemas-4-usuarios": [
+    {
+      "id": 1,
+      "codigo": 1,
+      "nome": "Willian Ferreira Maruno",
+      "login": "maruno",
+      "email": "jackmaruno@gmail.com",
+      "cpf": "82748063104",
+      "telefone": "555555555",
+      "celular": "(61) 9 8573-4449",
+      "dataCadastro": "22/08/2018 08:17:46",
+      "responsavelCadastro": {
+        "codigo": 1,
+        "nome": "Willian Ferreira Maruno",
+        "login": "maruno",
+        "email": "jackmaruno@gmail.com"
+      },
+      "responsavelAtualizacao": null,
+      "perfil": {
+        "codigo": 6,
+        "nome": "Administrador",
+        "chave": "P_SCAF.01"
+      },
+      "foto": null
+    }
+  ],
+  "perfis": [
+    {
+      "codigo": 6,
+      "nome": "Administrador",
+      "chave": "P_SCAF.01"
+    },
+    {
+      "codigo": 7,
+      "nome": "Usuário",
+      "chave": "P_SCAF.02"
+    }
+  ],
+  "corporativo-usuarios": {
+    "content": [
+      {
+        "codigo": 3,
+        "nome": "Nelson",
+        "login": "nrsjnet@gmail.com",
+        "cpf": "66622233344",
+        "telefone": "",
+        "celular": "(44) 9 6666-5555",
+        "email": "nrsjnet@gmail.com",
+        "dataCadastro": "27/08/2018 09:40",
+        "responsavelCadastro": {
+          "codigo": 1,
+          "nome": "Willian Ferreira Maruno",
+          "login": "maruno",
+          "email": "jackmaruno@gmail.com"
+        },
+        "dataAtualizacao": "27/08/2018 10:04",
+        "responsavelAtualizacao": {
+          "codigo": 1,
+          "nome": "Willian Ferreira Maruno",
+          "login": "maruno",
+          "email": "jackmaruno@gmail.com"
+        }
+      },
+      {
+        "codigo": 1,
+        "nome": "Willian Ferreira Maruno",
+        "login": "maruno",
+        "cpf": "82748063104",
+        "telefone": "",
+        "celular": "(61) 9 8573-4449",
+        "email": "jackmaruno@gmail.com",
+        "dataCadastro": "22/08/2018 08:17",
+        "responsavelCadastro": {
+          "codigo": 1,
+          "nome": "Willian Ferreira Maruno",
+          "login": "maruno",
+          "email": "jackmaruno@gmail.com"
+        }
+      }
+    ],
+    "last": true,
+    "totalPages": 1,
+    "totalElements": 2,
+    "size": 10,
+    "number": 0,
+    "first": true,
+    "sort": [
+      {
+        "direction": "ASC",
+        "property": "nome",
+        "ignoreCase": false,
+        "nullHandling": "NATIVE",
+        "ascending": true
+      }
+    ],
+    "numberOfElements": 2
+  }
+}

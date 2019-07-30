@@ -1,0 +1,203 @@
+//imports
+@import '../styles/scss/variaveis';
+@import '../styles/scss/mixins';
+@import '../grid/grid.component.scss';
+
+/* Buttons
+=============================================== */
+ 
+
+.ss-btn,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"] {
+    // display: flex;
+    // width: 100%;
+    height: 36px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    // padding: $comp-padding;
+    padding-left: 4px;
+    padding-right: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    background-color: transparent;
+    transition: 0.5s;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+} 
+ 
+.ss-btn-format-default {
+    display: flex;
+    width: 100%;
+}
+
+.ss-btn-format-inline {
+    display: unset;
+    width: unset;
+    margin-left: 10px;
+}
+
+.ss-btn-default {
+    border: $comp-border;
+    border-color: $cor-base-2;
+    background-color: $cor-base-2;
+    color: $cor-base-4;
+}
+
+.ss-btn-primary {
+    border: $comp-border;
+    border-color: $cor-highlight;
+    background-color: $cor-highlight;
+    color: $cor-label;
+}
+
+.ss-btn-success {
+    border: $comp-border;
+    border-color: $cor-success;
+    background-color: $cor-success;
+    color: $cor-label;
+}
+
+.ss-btn-warning {
+    border: $comp-border;
+    border-color: $cor-warning;
+    background-color: $cor-warning;
+    color: $cor-label;
+}
+
+.ss-btn-danger {
+    border: $comp-border;
+    border-color: $cor-danger;
+    background-color: $cor-danger;
+    color: $cor-label;
+}
+
+// outline buttons
+.ss-btn-outline-default,
+.ss-btn-outline-primary,
+.ss-btn-outline-success,
+.ss-btn-outline-warning,
+.ss-btn-outline-danger {
+    border: 2px solid;
+}
+
+.ss-btn-outline-default {
+    border-color: $cor-base-2;
+    color: $cor-base-4;
+}
+
+.ss-btn-outline-primary {
+    border-color: $cor-highlight;
+    color: $cor-highlight;
+}
+
+.ss-btn-outline-success {
+    border-color: $cor-success;
+    color: $cor-success;
+}
+
+.ss-btn-outline-warning {
+    border-color: $cor-warning;
+    color: $cor-warning;
+}
+
+.ss-btn-outline-danger {
+    border-color: $cor-danger;
+    color: $cor-danger;
+}
+
+//hover buttons
+.ss-btn-primary:hover,
+.ss-btn-success:hover,
+.ss-btn-warning:hover,
+.ss-btn-danger:hover,
+.ss-btn-neutral:visited,
+.ss-btn-default:visited,
+.ss-btn-primary:visited,
+.ss-btn-success:visited,
+.ss-btn-warning:visited,
+.ss-btn-danger:visited,
+.ss-btn-outline-primary:visited,
+.ss-btn-outline-success:visited,
+.ss-btn-outline-warning:visited,
+.ss-btn-outline-danger:visited {
+    color: $cor-label;
+}
+
+.ss-btn-default:hover,
+.ss-btn-primary:hover,
+.ss-btn-success:hover,
+.ss-btn-warning:hover,
+.ss-btn-danger:hover {
+    filter: brightness(0.9);
+    box-shadow: inset 1px 1px 2px $cor-shadow-1;
+}
+
+.ss-btn-outline-default:hover {
+    background-color: $cor-base-2;
+    color: $cor-base-4;
+}
+
+.ss-btn-outline-primary:hover {
+    background-color: $cor-highlight;
+    color: $cor-label;
+}
+
+.ss-btn-outline-success:hover {
+    background-color: $cor-success;
+    color: $cor-label;
+}
+
+.ss-btn-outline-warning:hover {
+    background-color: $cor-warning;
+    color: $cor-label;
+}
+
+.ss-btn-outline-danger:hover {
+    background-color: $cor-danger;
+    color: $cor-label;
+}
+
+.ss-btn:disabled,
+input:disabled {
+    filter: opacity(0.3);
+    cursor: not-allowed;
+}
+
+.ss-group-inline {
+    .ss-btn {
+        width: 100%;
+        margin-right: 12px;
+        &:last-child {
+            margin-right: initial;
+        }
+    }
+}
+//estilo para colocar os itens a direita no header
+.app-header-action {
+    display: flex;
+    justify-content: flex-end;
+    .ss-btn {
+        margin-left: 1vw;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .ss-group-inline {
+        .ss-btn {
+            width: auto;
+            display: inline-flex;
+        }
+    }
+}
+
+.ss-btnclose {
+    float: right;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-right: 4px;
+}

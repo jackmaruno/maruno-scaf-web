@@ -1,0 +1,38 @@
+<main id="app" class="app-grid">
+
+  <!-- Navbar - Cabeçalho principal  -->
+  <div class="app-navbar">
+    <app-navbar 
+      #appheader 
+      titulo="SCAF" 
+      linkLogo="#" 
+      [usuarioLogado]="getUsuario()" 
+      >
+      <!--  logoImagem="assets/images/fiscalizacao-app.png" -->
+    </app-navbar>
+  </div>
+
+  <!-- Toolbar - Menu Lateral Esquerdo -->
+  <div class="app-toolbar">
+    <app-toolbar [itens]="itensToolbar" [header]="appheader"></app-toolbar>
+  </div> 
+
+  <!-- Header - Cabeçalho da Funcionalidade -->
+  <header class="app-header">
+    <app-header></app-header>
+  </header>
+
+
+  <!-- Content - Conteúdo da Funcionalidade -->
+  <section class="app-content" [class.grid-col-span-1]="(!isClosed() | async)" [class.grid-col-span-2]="(isClosed() | async)">
+    <router-outlet></router-outlet>
+    <div id="action-bar-container" class="hidden"></div>
+    <div id="alert-container"></div>
+    <div id="action-bar-overlay"  class="hidden"></div>
+  </section>
+
+  <!-- Side bar - Conteúdo Lateral Direito -->
+  <sc-sidebar-container #sidebar></sc-sidebar-container>
+
+  <ngx-loading-bar color="#00FFAF" height="5px" ></ngx-loading-bar>
+</main>

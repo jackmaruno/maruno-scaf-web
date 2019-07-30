@@ -1,0 +1,74 @@
+<div id="tag-modal" class="ss-modal" style="display:block;">     
+    <div class="ss-modal-content" style="width: 800px;">
+
+        <div class="ss-modal-header">
+            <span class="ss-modal-btnclose" (click)="fechar()">&times;</span>
+            <h5>Cadastro de Pagamento Agendado</h5>
+        </div>
+ 
+        <div class="ss-modal-body" > 
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="ss-form-group" >
+                        <label>Nome <span class="campo-obrigatorio-label" >*</span></label>
+                        <div class="ss-addon" >    
+                            <input class="ss-form-control"  [(ngModel)]="agendamento.nome" type="text" maxlength="250" placeholder="Nome" scInput >
+                        </div> 
+                    </div> 
+        
+                    <div class="ss-form-group" >
+                        <label>Descrição <span class="campo-obrigatorio-label" >*</span></label>
+                        <div class="ss-addon" >    
+                            <textarea class="ss-form-control" [(ngModel)]="agendamento.descricao" maxlength="3750" style="width: 100% !important;" rows="7" ></textarea>
+                        </div> 
+                    </div> 
+
+                </div>
+                <div class="col-sm-6"> 
+        
+                    <div class="ss-form-group" >
+                        <label>Grupo <span class="campo-obrigatorio-label" >*</span></label>
+                        <ng-select [items]="listGrupos" bindLabel="nome"  placeholder="Selecione" [(ngModel)]="grupo"></ng-select> 
+                    </div> 
+        
+                    <div class="ss-form-group" >
+                        <label>Categoria <span class="campo-obrigatorio-label" >*</span></label>
+                        <ng-select [items]="grupo.listCategorias" bindLabel="nome" placeholder="Selecione" [(ngModel)]="agendamento.categoria" ></ng-select> 
+                    </div>  
+         
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="ss-form-group" >
+                                <label>Data de Início <span class="campo-obrigatorio-label" >*</span></label>
+                                <div class="ss-addon" >    
+                                    <input class="ss-form-control" [(ngModel)]="agendamento.dataInicio" type="tel"  maxlength="10" scInput bsDatepicker >
+                                </div> 
+                            </div> 
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="ss-form-group" >
+                                <label>Período <span class="campo-obrigatorio-label" >*</span></label>
+                                <ng-select [items]="listPeriodos" bindLabel="nome"  placeholder="Selecione" [(ngModel)]="agendamento.periodo"></ng-select> 
+                            </div> 
+                        </div>
+                    </div>
+
+                </div>
+            </div> 
+        </div>
+
+        <div class="ss-modal-footer" style="height: 65px;">   
+            <div style="float: right;">
+                <botao label="Salvar" formato="inline" tipo="success" (click)="salvar()" ></botao>
+                <botao label="Fechar" formato="inline" tipo="outline-default" (click)="fechar()" ></botao> 
+            </div> 
+        </div>
+    </div> 
+</div> 
+
+<!-- 
+<button class="ss-btn ss-btn-format-inline ss-btn-neutral" *ngFor="let p of listTags" (click)="p.check = !p.check"
+    [ngClass]="{'ss-btn-primary':p.check === true, 'ss-btn-neutral': p.check === false}">
+    <i class="material-icons">{{p.check === true ?'check_circle':''}}</i> {{p.nome}}
+</button>
+       -->

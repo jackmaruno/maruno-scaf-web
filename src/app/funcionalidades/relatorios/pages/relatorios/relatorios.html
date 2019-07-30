@@ -1,0 +1,140 @@
+<div class="row">
+    <div class="col-sm-12 row-header">Despesas</div>
+    <div class="col-sm-12 row-header"><HR></div> 
+    <div class="col-sm-12">
+      <div class=" ss-table-striped  ss-table-sortable" >
+          <p-treeTable [value]="despesas">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Nome</th> 
+                      <th>Tipo</th> 
+                      <th>Tags</th> 
+                      <th>Data Refêrencia</th> 
+                      <th>Valor Previsto</th> 
+                      <th>Valor Lancamento</th> 
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                  <tr>
+                      <td>
+                          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                          {{rowData.nome}}
+                      </td>
+                      <td>{{rowData.nomeTipo}}</td>
+                      <td>{{rowData.tags}}</td>
+                      <td>{{rowData.dataReferencia}}</td>
+                      <td>{{rowData.valorPrevisto | currency:'R$':'symbol':'1.2-2':'pt'}}</td>
+                      <td>{{rowData.valorLancamento | currency:'R$':'symbol':'1.2-2':'pt'}}</td> 
+                  </tr>
+              </ng-template>
+          </p-treeTable>
+      </div>
+    </div> 
+    <div class="col-sm-12">&nbsp;</div> 
+    <div class="col-sm-12">&nbsp;</div> 
+
+    <div class="col-sm-12 row-header">Receitas</div>
+    <div class="col-sm-12 row-header"><HR></div> 
+    <div class="col-sm-12">
+      <div class=" ss-table-striped  ss-table-sortable" >
+          <p-treeTable [value]="receitas">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Nome</th> 
+                      <th>Tipo</th> 
+                      <th>Tags</th> 
+                      <th>Data Refêrencia</th> 
+                      <th>Valor Previsto</th> 
+                      <th>Valor Lancamento</th> 
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                  <tr>
+                      <td>
+                          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                          {{rowData.nome}}
+                      </td>
+                      <td>{{rowData.nomeTipo}}</td>
+                      <td>{{rowData.tags}}</td>
+                      <td>{{rowData.dataReferencia}}</td>
+                      <td>{{rowData.valorPrevisto | currency:'R$':'symbol':'1.2-2':'pt'}}</td>
+                      <td>{{rowData.valorLancamento | currency:'R$':'symbol':'1.2-2':'pt'}}</td> 
+                  </tr>
+              </ng-template>
+          </p-treeTable>
+      </div>
+    </div> 
+</div>
+
+
+ 
+
+<ng-template #filtrosSidebar > 
+    <div class="row sidebar-content" *ngIf="relatorio" >
+        <div class="col-sm-12 row-sub-header">Filtros</div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="material-icons">dashboard</i> {{filtros[0].nome}} 
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[0])"><i  style="color: #3c8dbc; font-size: 28px" class="material-icons">{{filtros[0].check === true ?'check_box':'check_box_outline_blank'}}</i></div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="ss-form-group col-sm-12"  *ngIf="relatorio && relatorio.tipos"> 
+            <button class="ss-btn ss-btn-format-inline ss-btn-neutral" *ngFor="let tipo of relatorio.tipos" (click)="set(tipo)" [ngClass]="{'ss-btn-primary':tipo.check === true, 'ss-btn-neutral': tipo.check === false}">
+                <i class="material-icons">{{tipo.check === true ?'check_circle':''}}</i> {{tipo.nome}}
+            </button>
+        </div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="material-icons">local_offer</i> {{filtros[1].nome}}
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[1])"><i  style="color: #3c8dbc; font-size: 28px" class="material-icons">{{filtros[1].check === true ?'check_box':'check_box_outline_blank'}}</i></div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="ss-form-group col-sm-12"  *ngIf="relatorio && relatorio.tags"> 
+            <button class="ss-btn ss-btn-format-inline ss-btn-neutral" *ngFor="let tag of relatorio.tags" (click)="set(tag)" [ngClass]="{'ss-btn-primary':tag.check === true, 'ss-btn-neutral': tag.check === false}">
+                <i class="material-icons">{{tag.check === true ?'check_circle':''}}</i> {{tag.nome}}
+            </button>
+        </div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="material-icons">av_timer</i> {{filtros[2].nome}}
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[2])"><i  style="color: #3c8dbc; font-size: 28px" class="material-icons">{{filtros[2].check === true ?'check_box':'check_box_outline_blank'}}</i></div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="ss-form-group col-sm-12"  *ngIf="meses"> 
+            <button class="ss-btn ss-btn-format-inline ss-btn-neutral" *ngFor="let mes of meses" (click)="set(mes)" [ngClass]="{'ss-btn-primary':mes.check === true, 'ss-btn-neutral': mes.check === false}">
+                <i class="material-icons">{{mes.check === true ?'check_circle':''}}</i> {{mes.nome}}
+            </button>
+        </div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="material-icons">insert_chart</i> {{filtros[3].nome}}
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[3])"><i  style="color: #3c8dbc; font-size: 28px" class="material-icons">{{filtros[3].check === true ?'check_box':'check_box_outline_blank'}}</i></div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="ss-form-group col-sm-12"  *ngIf="relatorio && relatorio.grupos" style="padding-left: 20px; padding-right: 20px; overflow: scroll; height: 400px;"> 
+
+            <div class="row relatorio-grupo" *ngFor="let grupo of relatorio.grupos" > 
+                <div class="col-sm-12 row-sub-header">{{grupo.nome}}</div>
+                <div class="col-sm-12 row-sub-header"><HR></div> 
+                <div class="col-sm-12">
+                    <button class="ss-btn ss-btn-format-inline ss-btn-neutral" *ngFor="let categoria of grupo.listCategorias" (click)="set(categoria)" [ngClass]="{'ss-btn-primary':categoria.check === true, 'ss-btn-neutral': categoria.check === false}">
+                        <i class="material-icons">{{categoria.check === true ?'check_circle':''}}</i> {{categoria.nome}}
+                    </button>
+                </div> 
+            </div>
+
+        </div>
+    </div> 
+</ng-template> 

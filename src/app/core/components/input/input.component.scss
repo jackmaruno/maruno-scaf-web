@@ -1,0 +1,198 @@
+//imports
+@import '../styles/scss/variaveis';
+@import '../styles/scss/mixins';
+@import '../grid/grid.component';
+
+/* Inputs
+=================================
+*/
+
+/* Inputs
+=================================
+*/
+
+.ss-form-group {
+    margin-bottom: 16px;
+    position: relative;
+    label {
+        display: block;
+        width: auto;
+    }
+    small {
+        display: block;
+    }
+    &.ss-alert-success {
+        label,
+        small {
+            color: $cor-success;
+        }
+        .ss-form-control {
+            border-color: $cor-success;
+            color: $cor-success;
+        }
+        .st0 {
+            fill: $cor-success;
+        }
+        .ss-input-icon-left,
+        .ss-input-icon-right {
+            color: $cor-success;
+        }
+    }
+    &.ss-alert-warning {
+        label,
+        small {
+            color: $cor-warning;
+        }
+        .ss-form-control {
+            border-color: $cor-warning;
+            color: $cor-warning;
+        }
+        .st0 {
+            fill: $cor-warning;
+        }
+        .ss-input-icon-left,
+        .ss-input-icon-right {
+            color: $cor-warning;
+        }
+    }
+    &.ss-alert-danger {
+        label,
+        small {
+            color: $cor-danger;
+        }
+        .ss-form-control {
+            border-color: $cor-danger;
+            color: $cor-danger;
+        }
+        .st0 {
+            fill: $cor-danger;
+        }
+        .ss-input-icon-left,
+        .ss-input-icon-right {
+            color: $cor-danger;
+        }
+    }
+}
+
+.ss-form-control {
+    height: $comp-height;
+    border-radius: $comp-border-radius;
+    padding: $comp-padding;
+    border: $comp-border;
+    border-color: $cor-base-4;
+    background-color: transparent;
+    width: 100%;
+    color: $cor-base-4;
+}
+
+.ss-form-control:focus {
+    background-color: $cor-background;
+}
+
+// btn addons
+.ss-addon {
+    display: flex;
+    align-items: center;
+    .ss-form-control {
+        border-radius: 4px 0 0 4px;
+        // margin-left: -1px;
+    }
+    .ss-form-control:last-child {
+        border-radius: 0px 4px 4px 0;
+        margin-left: -1px;
+    }
+    .ss-form-control:first-child {
+        // border-radius: 0px 4px 4px 0;
+        margin-right: -1px;
+    }
+}
+
+.ss-addon-left {
+    height: 36px;
+    background: $cor-base-2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid transparent;
+    color: $cor-base-3;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.ss-addon-right {
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 4px 4px 0;
+    border: 1px solid transparent;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.ss-addon-left,
+.ss-addon-right {
+    background: $cor-base-2;
+    border-color: $cor-base-4;
+    color: $cor-base-3;
+}
+
+.ss-alert-success {
+    .ss-addon-left,
+    .ss-addon-right {
+        background: $cor-success-2;
+        border-color: $cor-success;
+        color: $cor-success;
+    }
+}
+
+.ss-alert-warning {
+    .ss-addon-left,
+    .ss-addon-right {
+        background: $cor-warning-2;
+        border-color: $cor-warning;
+        color: $cor-warning;
+    }
+}
+
+.ss-alert-danger {
+    .ss-addon-left,
+    .ss-addon-right {
+        background: $cor-danger-2;
+        border-color: $cor-danger;
+        color: $cor-danger;
+    }
+}
+
+
+/* Search
+==================================
+*/
+
+// .ss-search-container {
+//     position: relative;
+//     overflow: visible;
+// }
+.ss-input-icon-left,
+.ss-input-icon-right {
+    position: absolute;
+    padding: 6px;
+    color: $cor-base-3;
+}
+
+.ss-input-icon-right {
+    right: 0;
+}
+
+.ss-input-icon-left+.ss-input-container {
+    padding-left: 34px;
+}
+
+.ss-input-icon-right+.ss-input-container {
+    padding-right: 34px;
+}

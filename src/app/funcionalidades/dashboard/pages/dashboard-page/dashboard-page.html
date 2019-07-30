@@ -1,0 +1,22 @@
+<div id="dashboard-page">
+    <app-tab-panel *ngIf="dados">
+        <app-tab title="Painel Gerencial" [selected]="true">
+            <atividades [lista]="dados.atividadesMes"></atividades>
+            <div class="row">
+                <section class="col-lg-6 connectedSortable">
+                    <ultimas-atividades [lista]="dados.ultimasAtividades"></ultimas-atividades>
+                    <chart-mes [lista]="dados.atividadesMes"></chart-mes>
+                    <chart-meses [lista]="dados.atividadesMeses"></chart-meses>
+                </section>
+
+                <section class="col-lg-6 connectedSortable">
+                    <proximas-atividades [lista]="dados.proximasAtividades"></proximas-atividades>
+                    <chart-total-mes [lista]="dados.atividadesMes"></chart-total-mes>
+                </section>
+            </div>
+        </app-tab>
+
+        <app-tab title="Agenda">
+        </app-tab>
+    </app-tab-panel>
+</div>

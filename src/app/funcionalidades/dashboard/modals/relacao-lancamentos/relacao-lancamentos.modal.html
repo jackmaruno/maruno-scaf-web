@@ -1,0 +1,52 @@
+<div id="relacao-lancamentos" class="ss-modal" style="display:block;" *ngIf="atividade && atividade.codTipo > 0">
+    <div class="ss-modal-content" style="width: 800px;">
+
+        <div class="ss-modal-header">
+            <span class="ss-modal-btnclose" (click)="fechar()">&times;</span>
+            <h5>Visualizar Lançamentos</h5>
+        </div>
+
+        <div class="ss-modal-body">
+            <div class="row">
+                <div class="col-lg-12"> <h2>{{atividade.descricao}}</h2>  </div>
+                <div class="col-lg-12"><h4><b>Total Realizado:</b> {{ atividade.valorPago | currency:'R$':'symbol':'1.2-2':'pt'}}</h4></div>
+                <div class="col-lg-12"></div>
+                <div class="col-lg-12 ss-table ss-table-striped ss-table-sortable">
+                    <table [mfData]="lista" #mf="mfDataTable" [mfRowsOnPage]="8">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Data Referência</th>
+                                <th>Data Lancamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let lancamento of mf.data">
+                                <td>{{ lancamento.codigo }}</td>
+                                <td>{{ lancamento.nomeCategoria}}</td> 
+                                <td>{{ lancamento.valorPago | currency:'R$':'symbol':'1.2-2':'pt'}}</td>
+                                <td>{{ lancamento.dataReferencia }}</td>
+                                <td>{{ lancamento.dataLancamento }}</td>
+                            </tr>
+                        </tbody> 
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" style="background-color: #F5F7F8 !important;">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="ss-modal-footer">
+            <div style="float: right;">
+                <botao label="Fechar" formato="inline" tipo="outline-default" (click)="fechar()"></botao>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<div id="lancamento-modal" class="ss-modal" style="display:block;" *ngIf="lancamento">     
+    <div class="ss-modal-content"  [ngClass]="{'lancamento-normal': !isParcelaOrFatura(), 'lancamento-parcelado': isParcelaOrFatura()}">
+
+        <div class="ss-modal-header" >
+            <span class="ss-modal-btnclose" (click)="fechar()">&times;</span>
+            <h5>Cadastro de lancamento</h5>
+        </div>
+ 
+        <div class="ss-modal-body row"> 
+            <div class="row" [ngClass]="{'col-sm-12': !isParcelaOrFatura(), 'col-sm-7': isParcelaOrFatura()}">
+                
+                <div class="col-sm-6"> 
+                    <div class="ss-form-group" >
+                        <label>Grupo <span class="campo-obrigatorio-label" >*</span></label>
+                        <ng-select [items]="listGrupos" bindLabel="nome"  placeholder="Selecione" [(ngModel)]="grupo" [disabled]="lancamento.codigo > 0"></ng-select> 
+                    </div>  
+                </div>
+                <div class="col-sm-6">  
+                    <div class="ss-form-group" >
+                        <label>Categoria <span class="campo-obrigatorio-label" >*</span></label>
+                        <ng-select [items]="grupo.listCategorias" bindLabel="nome" placeholder="Selecione" [(ngModel)]="lancamento.categoria" [disabled]="lancamento.codigo > 0" (change)="setCategoria()"></ng-select> 
+                    </div>   
+                </div>
+
+                <div class="col-sm-12">  
+                    <label>Etiquetas </label> 
+                    <div style="border: 1px #34495E solid; padding: 10px 10px 10px 10px; min-height: 30px; background-color: white;" (click)="openTags()">
+                        <tags-list [tags]="lancamento.tags"></tags-list>
+                    </div>
+                </div> 
+                <div class="col-sm-12"> &nbsp;</div> 
+
+                <div [ngClass]="{'col-sm-12': lancamento.codTipoPagamento == TipoPagamentoEnum.A_VISTA
+                               , 'col-sm-6': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO
+                               , 'col-sm-4': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO}" *ngIf="!isEmprestimo()"> 
+                    <div class="ss-form-group" >
+                        <label>Forma de Pagamento <span class="campo-obrigatorio-label" >*</span></label>
+                        <ng-select [items]="listTiposPagamentos" bindLabel="nome" bindValue="codigo" placeholder="Selecione" [(ngModel)]="lancamento.codTipoPagamento" [disabled]="lancamento.codigo > 0 || isFatura() || isEmprestimo()"></ng-select> 
+                    </div>   
+                </div>
+
+                <div [ngClass]="{'col-sm-6': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO || isEmprestimo()
+                               , 'col-sm-3': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO}" *ngIf="lancamento.codTipoPagamento > TipoPagamentoEnum.A_VISTA || isEmprestimo()"> 
+                    <div class="ss-form-group" >
+                        <label>Em quantas vezes?<span class="campo-obrigatorio-label" >*</span></label>
+                        <input type="number" [(ngModel)]="numParcelas" class="ss-form-control"  [disabled]="lancamento.codigo > 0"> 
+                    </div>  
+                </div>
+
+                <div class="col-sm-5" *ngIf="lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO">  
+                    <div class="ss-form-group" >
+                        <label>Cartão <span class="campo-obrigatorio-label" >*</span></label>
+                        <ng-select [items]="listCartoes" bindLabel="nome" placeholder="Selecione" [(ngModel)]="lancamento.cartaoCredito" ></ng-select> 
+                    </div>   
+                </div>
+
+                <div class="col-sm-6"> 
+                    <div class="ss-form-group" >
+                        <label>Data de Referência <span class="campo-obrigatorio-label" >*</span></label> 
+                        <div class="ss-addon" >    
+                            <input class="ss-form-control" [(ngModel)]="lancamento.dataReferencia" type="tel" maxlength="10" bsDatepicker >
+                        </div> 
+                    </div>  
+                </div>
+
+                <div class="col-sm-4" *ngIf="isEmprestimo()"> 
+                    <div class="ss-form-group" >
+                        <label>Data da 1ª Parcela <span class="campo-obrigatorio-label" >*</span></label> 
+                        <div class="ss-addon" >    
+                            <input class="ss-form-control" [(ngModel)]="dataFatura" type="tel" maxlength="10" bsDatepicker >
+                        </div> 
+                    </div>  
+                </div>
+
+
+                <div [ngClass]="{'col-sm-6': !isEmprestimo(), 'col-sm-4': isEmprestimo()}">  
+                    <div class="ss-form-group" >
+                        <label>Valor {{lancamento.codTipoPagamento > TipoPagamentoEnum.A_VISTA ? 'da Parcela':''}}<span class="campo-obrigatorio-label" >*</span></label>
+                        <input class="ss-form-control" [(ngModel)]="lancamento.valor" type="tel"  maxlength="12" mascara="MONETARIO" >
+                    </div>   
+                </div>
+
+                <div class="col-sm-4" *ngIf="isEmprestimo()">  
+                    <div class="ss-form-group" >
+                        <label>Valor da Parcela<span class="campo-obrigatorio-label" >*</span></label>
+                        <input class="ss-form-control" [(ngModel)]="lancamento.valorPrevisto" type="tel"  maxlength="12" mascara="MONETARIO" >
+                    </div>   
+                </div>
+
+                <div class="col-sm-12">  
+                    <label>Descrição </label>
+                    <div class="ss-addon" >    
+                        <textarea class="ss-form-control" [(ngModel)]="lancamento.descricao" maxlength="3750" style="width: 100% !important;" rows="4" ></textarea>
+                    </div> 
+                </div> 
+            </div> 
+
+            <div class="col-sm-5" *ngIf="isFatura()">
+                <div class="row">  
+                    <div class="col-sm-12">  
+                        <div class="ss-form-group" >
+                            <label>Cartão <span class="campo-obrigatorio-label" >*</span></label>
+                            <ng-select [items]="listCartoes" bindLabel="nome" placeholder="Selecione" [(ngModel)]="cartaoCredito"  (change)="findDatasFaturas()"></ng-select> 
+                        </div>   
+                    </div>
+                    <div class="col-sm-12" *ngIf="cartaoCredito && cartaoCredito.codigo > 0">  
+                        <div class="ss-form-group" >
+                            <label>Data de Vencimento da Fatura <span class="campo-obrigatorio-label" >*</span></label>
+                            <ng-select [items]="listFaturas" bindLabel="descricao" placeholder="Selecione" [(ngModel)]="fatura"  (change)="findParcelasByFatura()"></ng-select> 
+                        </div>   
+                    </div>
+                    <div class="col-sm-12"  *ngIf="cartaoCredito && cartaoCredito.codigo > 0">    
+                        <div class="ss-table ss-table-striped ss-table-sortable">
+                            <table >
+                                <thead>
+                                    <tr>
+                                        <th>Nº</th>
+                                        <th>Data</th> 
+                                        <th>Categoria</th> 
+                                        <th>Valor</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let parcela of listParcelas" > 
+                                        <td>{{ parcela.numero }}</td> 
+                                        <td>{{ parcela.lancamento.dataReferencia }}</td>  
+                                        <td>{{ parcela.lancamento.categoria.nome }}</td>  
+                                        <td>{{ parcela.valor | currency:'R$':'symbol':'1.2-2':'pt'}}</td>  
+                                    </tr>
+                                </tbody> 
+                            </table>
+                        </div> 
+                    </div>
+                </div>
+            </div> 
+
+            <div class="col-sm-5" *ngIf="isParcela()">
+                <div class="row">  
+                    <div class="col-sm-12" >  
+                        <div class="ss-form-group" >
+                            <label>Competência <span class="campo-obrigatorio-label" >*</span></label>
+                            <ng-select [items]="listDatasParcelas" bindLabel="data" placeholder="Selecione" [(ngModel)]="dataParcela"  (change)="findParcelasPendentes()"></ng-select> 
+                        </div>   
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="dataParcela && dataParcela.anoMes">  
+                        <div class="ss-form-group" >
+                            <label>Parcela <span class="campo-obrigatorio-label" >*</span></label>
+                            <ng-select [items]="listParcelasPendentes" bindLabel="descricao" placeholder="Selecione" [(ngModel)]="parcela"  (change)="setParcelaPendente()" ></ng-select> 
+                        </div>   
+                    </div>
+                    
+                    <div class="col-sm-12" *ngIf="dataParcela && dataParcela.anoMes">Parcelas Pagas</div>
+                    <div class="col-sm-12" *ngIf="dataParcela && dataParcela.anoMes">    
+                        <div class="ss-table ss-table-striped ss-table-sortable">
+                            <table >
+                                <thead>
+                                    <tr>
+                                        <th>Nº</th>
+                                        <th>Data</th> 
+                                        <th>Data Pagamento</th> 
+                                        <th>Categoria</th> 
+                                        <th>Valor</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let parcela of listParcelas" > 
+                                        <td>{{ parcela.numero }}</td> 
+                                        <td>{{ parcela.data }}</td>  
+                                        <td>{{ parcela.lancamento.dataReferencia }}</td>  
+                                        <td>{{ parcela.lancamento.categoria.nome }}</td>  
+                                        <td>{{ parcela.valor | currency:'R$':'symbol':'1.2-2':'pt'}}</td>  
+                                    </tr>
+                                </tbody> 
+                            </table>
+                        </div> 
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+
+        <div class="ss-modal-footer" >   
+            <div style="float: right;">
+                <botao label="Salvar" formato="inline" tipo="success" (click)="salvar()" ></botao>
+                <botao label="Fechar" formato="inline" tipo="outline-default" (click)="fechar()" ></botao> 
+            </div> 
+        </div>
+    </div> 
+</div> 
+ 

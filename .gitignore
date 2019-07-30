@@ -1,0 +1,6 @@
+.DS_Store
+.sourcemaps
+node_modules
+platforms
+plugins
+projects

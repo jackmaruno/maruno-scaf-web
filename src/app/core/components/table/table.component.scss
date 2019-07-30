@@ -1,0 +1,103 @@
+//imports
+
+@import '../styles/scss/variaveis';
+@import '../styles/scss/mixins';
+@import '../grid/grid.component';
+
+@import '../more/more.component';
+
+/* Tables
+=============================================== */
+
+table {
+    line-height: 20px;
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.ss-table {
+    overflow: auto;
+    table {
+        background-color: $cor-base-1;
+        width: 100%;
+        tr {
+            box-shadow: $comp-shadow;
+            border: $comp-border;
+            &:hover {
+                background-color: $cor-selection;
+                color: $cor-theme-1;
+            }
+            th {
+                color: $cor-base-4;
+            }
+        }
+        th {
+            background-color: $cor-base-2;
+            min-width: 132px;
+            font-weight: normal;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        th,
+        td {
+            padding: 12px 24px;
+            min-height: 52px;
+        }
+    }
+    .ss-table-actions {
+        text-align: right;
+        a,
+        button {
+            color: $cor-base-4;
+        }
+    }
+}
+
+.ss-table-striped {
+    tr:nth-child(odd) {
+        background-color: $cor-background;
+        &:hover {
+            background-color: $cor-selection;
+            ;
+        }
+    }
+}
+
+.ss-table-sortable {
+    th .ss-icon {
+        height: 16px;
+        width: 16px;
+        margin: 0;
+        margin-left: 4px;
+        vertical-align: middle;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ss-table table thead {
+        display: none;
+    }
+    .ss-table table tr {
+        border-bottom: 1px solid $cor-base-2;
+        display: block;
+    }
+    .ss-table table td {
+        display: block;
+        text-align: right;
+    }
+    .ss-table table td:before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-size: 12px;
+        padding-right: 8px;
+    }
+    .ss-table table td:last-child {
+        border-bottom: 0;
+    }
+}

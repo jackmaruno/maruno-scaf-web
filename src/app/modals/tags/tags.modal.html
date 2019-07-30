@@ -1,0 +1,19 @@
+<div id="tags-modal" class="ss-modal" style="display:block;">     
+    <div class="ss-modal-content" style="width: 500px;">
+        <div class="ss-modal-header">
+            <span class="ss-modal-btnclose" (click)="fechar()">&times;</span>
+            <h5>Etiquetas</h5>
+        </div>
+        <div class="ss-modal-body" >
+            <button class="ss-btn ss-btn-format-inline ss-btn-neutral" *ngFor="let p of listTags" (click)="set(p)" [ngClass]="{'ss-btn-success':p.check === true, 'ss-btn-neutral': p.check === false}">
+                <i class="material-icons">{{p.check === true ?'check_circle':''}}</i> {{p.nome}}
+            </button>
+        </div>
+        <div class="ss-modal-footer" style="height: 65px;">   
+            <div style="float: right;">
+                <botao label="OK" formato="inline" tipo="success" (click)="salvar()" ></botao>
+                <botao label="Fechar" formato="inline" tipo="outline-default" (click)="fechar()" ></botao> 
+            </div> 
+        </div>
+    </div> 
+</div>

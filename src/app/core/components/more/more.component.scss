@@ -1,0 +1,71 @@
+//imports
+
+@import '../styles/scss/variaveis';
+@import '../styles/scss/mixins';
+@import '../grid/grid.component';
+
+/*
+More
+========================================== */
+
+.ss-more {
+    position: relative;
+    display: inline-block;
+    color: $cor-base-4;
+    padding: 4px;
+    margin: 0;
+    float: right;
+    cursor: pointer;
+    .ss-moretext {
+        visibility: hidden;
+        position: absolute;
+        min-width: 100px;
+        text-align: center;
+        color: $cor-base-4;
+        background-color: $cor-base-1;
+        padding: 4px;
+        border: $comp-border;
+        border-radius: $comp-border-radius;
+        box-shadow: $comp-shadow-m;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.3s;
+        display: flex;
+        align-items: center;
+        .ss-more-item {
+            padding: 8px;
+            color: $cor-base-4;
+            border-radius: $comp-border-radius;
+            &:hover {
+                background-color: $cor-base-2;
+            }
+        }
+    }
+    &:hover .ss-moretext {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.ss-more-right {
+    top: -10px;
+    left: 86%;
+    &:after {
+        @include more-after();
+        top: 50%;
+        right: 100%;
+        border-color: transparent $cor-base-1 transparent transparent;
+    }
+}
+
+.ss-more-left {
+    top: -10px;
+    bottom: auto;
+    right: 86%;
+    &:after {
+        @include more-after();
+        top: 50%;
+        left: 100%;
+        border-color: transparent transparent transparent $cor-base-1;
+    }
+}

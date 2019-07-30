@@ -1,0 +1,45 @@
+//imports
+@import '../styles/scss/variaveis';
+@import '../styles/scss/mixins';
+@import '../grid/grid.component';
+
+/* User List
+=============================================== */
+
+.ss-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    line-height: 20px;
+    .ss-list-img,
+    .ss-list-icon {
+        height: 52px;
+        width: 52px;
+        display: flex;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        color: $cor-base-3;
+    }
+    .ss-list-icon {
+        border: 1px solid $cor-base-3;
+    }
+    .ss-list-info {
+        margin-left: 12px;
+        .ss-list-item,
+        .ss-list-tag {
+            margin: 0;
+        }
+        .ss-list-item {
+            font-weight: bold;
+        }
+    }
+    &:first-child {
+        padding-top: 0;
+    }
+    &.ss-divider {
+        border-bottom: 1px solid $cor-base-2;
+        padding-bottom: 20px;
+    }
+}

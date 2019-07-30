@@ -1,0 +1,12 @@
+e2e
+src
+.editorconfig
+angular.json
+config.xml
+data.json
+json-server-db.json
+json-server-routes.json
+README.md
+tsconfig.json
+tslint.json
+TUTORIAL.md

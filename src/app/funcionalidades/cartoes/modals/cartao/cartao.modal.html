@@ -1,0 +1,47 @@
+<div id="tag-modal" class="ss-modal" style="display:block;">     
+    <div class="ss-modal-content" style="width: 400px;">
+
+        <div class="ss-modal-header">
+            <span class="ss-modal-btnclose" (click)="fechar()">&times;</span>
+            <h5>Cadastro de Cartão</h5>
+        </div>
+ 
+        <div class="ss-modal-body" > 
+            <div class="ss-form-group" >
+                <label>Nome <span class="campo-obrigatorio-label" >*</span></label>
+                <div class="ss-addon" >    
+                    <input class="ss-form-control"  [(ngModel)]="cartao.nome" type="text" maxlength="250" placeholder="Nome" scInput >
+                </div> 
+            </div> 
+
+            <div class="ss-form-group" >
+                <label>Bandeira <span class="campo-obrigatorio-label" >*</span></label>
+                <ng-select [items]="listBandeiras" bindLabel="sigla" bindValue="sigla"  placeholder="Selecione" [(ngModel)]="cartao.bandeira"></ng-select> 
+            </div>  
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="ss-form-group" >
+                        <label>Vencimento <span class="campo-obrigatorio-label" >*</span></label>
+                        <div class="ss-addon" >    
+                            <input class="ss-form-control" [(ngModel)]="cartao.vencimento" type="tel"  maxlength="10" scInput  >
+                        </div> 
+                    </div> 
+                </div>
+                <div class="col-sm-6">
+                    <div class="ss-form-group" >
+                        <label>Fechamento <span class="campo-obrigatorio-label" >*</span></label>
+                        <input class="ss-form-control" [(ngModel)]="cartao.fechamento" type="tel"  maxlength="10" scInput  >
+                    </div> 
+                </div>
+            </div>
+        </div>  
+
+        <div class="ss-modal-footer" style="height: 65px;">   
+            <div style="float: right;">
+                <botao label="Salvar" formato="inline" tipo="success" (click)="salvar()" ></botao>
+                <botao label="Fechar" formato="inline" tipo="outline-default" (click)="fechar()" ></botao> 
+            </div> 
+        </div>
+    </div> 
+</div>  

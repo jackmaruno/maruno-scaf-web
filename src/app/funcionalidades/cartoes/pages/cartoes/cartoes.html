@@ -1,0 +1,41 @@
+<div class="ss-table ss-table-striped ss-table-sortable">
+  <table [mfData]="lista$ | async" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead>
+      <tr>
+        <th>ID</th> 
+        <th>Nome</th> 
+        <th>Bandeira</th>
+        <th>Vencimento</th>
+        <th>Fechamento</th>
+        <th>Data de Cadastro</th> 
+        <th>Última Alteração</th> 
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartao of mf.data">
+        <td>{{ cartao.codigo }}</td> 
+        <td>{{ cartao.nome }}</td> 
+        <td>{{ cartao.bandeira }}</td> 
+        <td>{{ cartao.vencimento }}</td> 
+        <td>{{ cartao.fechamento }}</td> 
+        <td>{{ cartao.dataInclusao }}</td> 
+        <td>{{ cartao.dataAlteracao }}</td> 
+        <td>
+          <botao [icon]="cartao.ativo? 'remove_circle' : 'check_circle'" label="" [tipo]="cartao.ativo? 'outline-danger' : 'outline-success'" (click)="alterarStatus(cartao)" class="width-50" formato="inline"></botao>
+          <botao icon="edit" label="" tipo="outline-warning" (click)="editar(cartao)" class="width-50" formato="inline"></botao>
+          <botao icon="close" label="" tipo="danger" (click)="remover(cartao)" class="width-50" formato="inline"></botao>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="8" style="background-color: #F5F7F8 !important;">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div> 
+<div class="col-sm-12">&nbsp;</div>
+<div class="col-sm-1"> <botao icon="add_circle_outline" label="Novo" tipo="success" (click)="editar({})" ></botao></div>
