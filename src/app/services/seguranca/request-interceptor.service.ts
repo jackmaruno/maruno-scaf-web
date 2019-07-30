@@ -44,10 +44,11 @@ export class RequestInterceptor implements HttpInterceptor {
 
             // {"Authorization":token, "Content-Type": "application/json"}
             let headers:HttpHeaders = new HttpHeaders({"Authorization":token, "Content-Type": "application/json"});
-
-            // req = request.clone({
-            //     headers: request.headers.set(header, token)
-            // });
+            req = request.clone({
+                headers: headers
+            });
+        }else{
+            let headers:HttpHeaders = new HttpHeaders({"Content-Type": "application/json"});
             req = request.clone({
                 headers: headers
             });
