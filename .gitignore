@@ -4,4 +4,4 @@ node_modules
 platforms
 plugins
 projects
-package.json
+package-lock.json
