@@ -1,6 +1,6 @@
-.DS_Store
-.editorconfig
-.sourcemaps
+*.DS_Store
+*.editorconfig
+*.sourcemaps
 node_modules
 platforms
 plugins

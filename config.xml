@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="maruno.scaf.web" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Fiscalização WEB</name>
+    <name>MARUNO SCAF WEB</name>
     <description>
-      Aplicativo Fiscalização WEB
+      Aplicativo MARUNO SCAF WEB
     </description>
     <author email="jackmaruno@gmail.com" href="http://quaemo.com.br">
       Willian Ferreira Maruno
