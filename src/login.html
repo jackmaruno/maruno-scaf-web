@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="bg-black">
+    <head>
+        <link rel="icon" type="image/x-icon" href="favicon.ico"> 
+        <meta charset="UTF-8">
+        
+        <title>SCAF - Autenticação</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <style>
+body{
+
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+.bg-black {
+  color: #f9f9f9 !important;
+  background-color: #222222 !important;
+}
+
+.bg-gray {
+  background-color: #eaeaec !important;
+}
+.bg-olive {
+  background-color: #3d9970 !important;
+}
+
+.form-box {
+  width: 360px;
+  margin: 90px auto 0 auto;
+}
+
+.form-box .header {
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #3d9970;
+  box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 300;
+  color: #fff;
+}
+.form-box .body,
+.form-box .footer {
+  padding: 10px 20px;
+  background: #fff;
+  color: #444;
+}
+.form-box .body, .form-box .footer {
+    padding: 10px 20px;
+    background: #fff;
+    color: #444;
+}
+.form-box .body > .form-group,
+.form-box .footer > .form-group {
+  margin-top: 20px;
+}
+.form-box .body > .form-group > input,
+.form-box .footer > .form-group > input {
+  border: #fff;
+}
+.form-box .body > .btn,
+.form-box .footer > .btn {
+  margin-bottom: 10px;
+}
+.form-box .footer {
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+@media (max-width: 767px) {
+  .form-box {
+    width: 90%;
+  }
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-control {
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  border-radius: 0px !important;
+  box-shadow: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #3c8dbc !important;
+  box-shadow: none;
+}
+.form-group {
+    margin-bottom: 15px; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-group.has-success label {
+  color: #00a65a;
+}
+.form-group.has-success .form-control {
+  border-color: #00a65a !important;
+  box-shadow: none;
+}
+.form-group.has-warning label {
+  color: #f39c12;
+}
+.form-group.has-warning .form-control {
+  border-color: #f39c12 !important;
+  box-shadow: none;
+}
+.form-group.has-error label {
+  color: #f56954;
+}
+.form-group.has-error .form-control {
+  border-color: #f56954 !important;
+  box-shadow: none;
+}
+/* Input group */
+.input-group .input-group-addon {
+  border-radius: 0;
+  background-color: #f4f4f4;
+}
+/* button groups */
+.btn-group-vertical .btn.btn-flat:first-of-type,
+.btn-group-vertical .btn.btn-flat:last-of-type {
+  border-radius: 0;
+}
+/* Checkbox and radio inputs */
+.checkbox,
+.radio {
+  padding-left: 0;
+}
+
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 11px system-ui;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, input, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: 100%;
+}
+ 
+
+.alert {
+    font-size: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert {
+  padding-left: 30px;
+  margin-left: 15px;
+  position: relative;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.alert-dismissable {
+    padding-right: 35px;
+}
+.alert-dismissable .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20); 
+}
+button {
+    -webkit-appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: buttonface;
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 11px system-ui;
+    padding: 1px 7px 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-image: initial;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.btn {
+  font-weight: 500;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  -webkit-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
+  -moz-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+  color: #f9f9f9 !important;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.exibir{
+    display: block !important;
+}
+.esconder{
+    display: none !important;
+}
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>  
+
+    var url_token = "https://maruno-scaf-rest.herokuapp.com/api/token?client_id=ID_SCAF_cj4XjHXNSRmL3TWQcgoEOW3220BFonJsEO7RAmCIc&client_secret=SECRET_SCAF_H4At4cj4XjHXEEWNSRFDSQRLOTcgyKooOW0Bo&grant_type=password";
+    function isEmpty(a) { 
+        return !a.val() || (a.val()+ "").length <= 0; 
+    }
+
+    function autenticar() { 
+
+
+        if( !isEmpty($('#senha')) 
+            && !isEmpty($('#login'))){
+            console.log(`${url_token}&username=${$('#login').val()}&password=${$('#senha').val()}`);
+            $.ajax({
+                method: "POST",
+                url: `${url_token}&username=${$('#login').val()}&password=${$('#senha').val()}`,
+                headers: {"Content-Type":"application/json"},
+            })
+            .done(function (response) {
+                console.log("SUCCESS: ", response);
+                localStorage.setItem('access_token', `${response['token_type']} ${response['access_token']}`);
+                localStorage.setItem("USUARIO", JSON.stringify(response));
+                localStorage.setItem("ACCESS_USER", JSON.stringify(response['usuario']));
+                window.location.href = "/index.html";
+            })
+
+            .fail(function(erro) {
+                console.log("ERROR: ", erro);
+                console.log("ERROR: ", erro.responseJSON);
+                $('#erro').removeClass("esconder"); 
+                if(erro){
+                    if(erro.responseJSON){
+                        $('#erro-msg').html(`<SPAN><B>${erro.responseJSON.error}</B><BR> ${erro.responseJSON.message}</SPAN>`);
+                    }else if(erro.responseText){
+                        $('#erro-msg').html(`<SPAN>${erro.responseText}</SPAN>`);
+                    }else{
+                        $('#erro-msg').html(`<SPAN>Erro desconhecido</SPAN>`);
+                    } 
+                }else{
+                    $('#erro-msg').html(`<SPAN>Erro desconhecido</SPAN>`);
+                }
+            });
+        }else{
+            $('#erro').removeClass("esconder"); 
+            $('#erro-msg').html(`<SPAN><B>Login</B> e <B>Senha</B> são de preenchimento obrigatório</SPAN>`);
+        }
+
+    }        
+
+        </script>
+    </head>
+    
+    <body class="bg-black" onload="$('#senha').focus()"> 
+
+        <div class="form-box" >
+            <div class="header"> Autenticar  </div> 
+                <div class="body bg-gray">
+                    <div class="form-group">
+                        <input id="login" name="login" class="form-control" type="text" placeholder="Login"/>
+                    </div>
+                    <div class="form-group">
+                        <input id="senha" name="senha" class="form-control" type="password" placeholder="Senha"/>
+                    </div>        
+                </div>
+                <div class="footer" >     
+                    <div id="erro" class="alert alert-danger alert-dismissable esconder" style="font-size: 12px;" onclick="$('#erro').addClass('esconder');">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <span id="erro-msg"></span>
+                    </div>                                                 
+                    <button type="button" class="btn bg-olive btn-block" onclick="autenticar()">Entrar</button>   
+                </div> 
+        </div>  
+ 
+</body>
+</html> 
