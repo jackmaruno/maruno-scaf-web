@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';  
-import { map } from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
-import { Constantes } from '../core/util/constantes';
  
 @Injectable({providedIn: 'root'})
 export class UsuarioService {
- 
+  
+    constructor(private http: HttpClient ) {
+     } 
 
-
-    constructor(private http: HttpClient) {
-     }
-
+     public autenticar(login: string, senha: string): Observable<any> {
+        const url_token = `${environment.rest_url}/token?client_id=ID_SCAF_cj4XjHXNSRmL3TWQcgoEOW3220BFonJsEO7RAmCIc&client_secret=SECRET_SCAF_H4At4cj4XjHXEEWNSRFDSQRLOTcgyKooOW0Bo&grant_type=password`;
+        const url = `${url_token}&username=${login}&password=${senha}`;
+        console.log(`\n\n\n\n${url}\n\n\n\n`);
+        return this.http.post(url, {});
+    }
     /***************************************************************************************************
      * RESOURCE usuarios cadastrados no scaf
      ***************************************************************************************************/
@@ -61,32 +63,5 @@ export class UsuarioService {
         return this.http.put<any[]>(this.RESOURCE(codigo)+"/foto", fotoVO);
     }
 
-
-    /***************************************************************************************************
-     *  retorna o usuário logado 
-     ***************************************************************************************************/
-    public getUsuario(): any {
-        let s = localStorage.getItem(Constantes.USUARIO);
-        if (s && s != '') {
-            return JSON.parse(s);
-        }
-        return {};
-    } 
-
-    /***************************************************************************************************
-     *  retorna o código do usuário logado
-     ***************************************************************************************************/
-    public getIdUsuario(): any { 
-        return this.getUsuario().codigo;
-    } 
-    
-    /***************************************************************************************************
-     *  seta o usuário logado 
-     ***************************************************************************************************/
-    public setUsuario(access_user:any) {
-        localStorage.setItem(Constantes.ACCESS_USER, JSON.stringify(access_user)); 
-        localStorage.setItem(Constantes.USUARIO, JSON.stringify(access_user.usuario)); 
-        localStorage.setItem(Constantes.ACCESS_TOKEN, `${access_user.token_type} ${access_user.access_token}`);
-    } 
-
+ 
 }

@@ -30,13 +30,8 @@ export class Constantes{
     public static DATA_FIM: string = 'dataFim'; 
 
     public static ACCESS_TOKEN: string = 'access_token';
-    public static ACCESS_TOKEN_LOCAL: string = 'access_token_local';
-    public static REFRESH_TOKEN: string = 'refresh_token';
-    public static URL_RETORNO: string = 'urlRetorno';
-    public static BEARER: string = 'Bearer';
     public static TENTATIVAS: string = 'tentativas';  
     public static PROFISSIONAL: string = 'PROFISSIONAL';  
-    public static ACCESS_USER: string = 'ACCESS_USER';  
     public static USUARIO: string = 'USUARIO';  
 
     public static DEFAULT_DROPZONE_CONFIG: any = {

@@ -342,8 +342,7 @@ button {
             .done(function (response) {
                 console.log("SUCCESS: ", response);
                 localStorage.setItem('access_token', `${response['token_type']} ${response['access_token']}`);
-                localStorage.setItem("USUARIO", JSON.stringify(response));
-                localStorage.setItem("ACCESS_USER", JSON.stringify(response['usuario']));
+                localStorage.setItem("USUARIO", JSON.stringify(response['usuario']));
                 window.location.href = "/index.html";
             })
 

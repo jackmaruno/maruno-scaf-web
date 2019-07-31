@@ -10,6 +10,9 @@ import { ContatosModule } from './funcionalidades/contatos/contatos.module';
 import { CartoesModule } from './funcionalidades/cartoes/cartoes.module';
 import { AgendamentosModule } from './funcionalidades/agendamentos/agendamentos.module';
 import { TagsModule } from './funcionalidades/tags/tags.module';
+import { LoginModule } from './funcionalidades/login/login.module';
+
+export function getLoginModule(){return LoginModule;}
 
 export function getDashboardModule(){return DashboardModule;}
 
@@ -23,6 +26,11 @@ export function getRelatoriosModule(){return RelatoriosModule;}
 export function getLancamentosModule(){return LancamentosModule;}
 
 const routes: Routes = [ 
+  {
+      path: 'autenticar'
+    , loadChildren: './funcionalidades/login/login.module#LoginModule'
+    // , loadChildren: getLoginModule
+  },
   {
       path: 'dashboard'
     // , loadChildren: './funcionalidades/dashboard/dashboard.module#DashboardModule'

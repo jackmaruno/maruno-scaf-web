@@ -39,10 +39,10 @@ export class RequestInterceptor implements HttpInterceptor {
         this.carregando();  
         
         if (segurancaService.isAuthenticated()) {
-            const header = segurancaService.getHeaderAutorizacao(); 
-            const token = segurancaService.getToken();
-
-            // {"Authorization":token, "Content-Type": "application/json"}
+            const token: string = segurancaService.getToken();
+            if(!token || token.length <= 0){
+                segurancaService.logout();
+            }
             let headers:HttpHeaders = new HttpHeaders({"Authorization":token, "Content-Type": "application/json"});
             req = request.clone({
                 headers: headers
@@ -66,7 +66,7 @@ export class RequestInterceptor implements HttpInterceptor {
                         localStorage.removeItem('tentativas');
                     } else {
                         this.contarTentativas();
-                        segurancaService.redirectCas();
+                        segurancaService.logout();
                     }  
                 } else if (responseError.status === 500) { 
                     localStorage.removeItem('tentativas');

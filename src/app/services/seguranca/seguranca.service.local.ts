@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
  
 import { ISeguranca } from './seguranca.interface';
 import { Constantes } from 'src/app/core/util/constantes';
-import { environment } from 'src/environments/environment';
-import { UsuarioService } from '../usuario.service';
 
 /***************************************************************************************************
 *  Serviço de Segurança Local
@@ -16,43 +14,15 @@ export class SegurancaServiceLocal implements ISeguranca {
     /***************************************************************************************************
      *          Construtor de pobre 
      ***************************************************************************************************/
-    constructor(private usuarioService: UsuarioService) { 
+    constructor() { 
     }
         
     /***************************************************************************************************
      * valida a autenticacao
      ***************************************************************************************************/
-    public validarAutenticacao(): boolean {
-        localStorage.removeItem(Constantes.REFRESH_TOKEN);
-        localStorage.removeItem(Constantes.ACCESS_TOKEN);
-
-        this.usuarioService.setUsuario(this.access_user);
+    public validarAutenticacao(): boolean { 
         return true;
-    }
-
-    /***************************************************************************************************
-     * retorna o token
-     ***************************************************************************************************/
-    public getToken(): string {
-        return "Bearer MC40MTUyOTc0NTU2MzEyNzU1bWFydW5vMTU2NDUwNTI3MDcxOA==";
-    }
-
-    /***************************************************************************************************
-     * sair da aplicação
-     ***************************************************************************************************/
-    public logout(): void {
-        localStorage.removeItem(Constantes.REFRESH_TOKEN);
-        localStorage.removeItem(Constantes.ACCESS_TOKEN);
-        localStorage.removeItem(Constantes.ACCESS_TOKEN_LOCAL);
-        window.location.href = environment.logout;
-    }
-
-    /***************************************************************************************************
-     * retorna o header
-     ***************************************************************************************************/
-    public getHeaderAutorizacao(): string {
-        return 'Authorization';
-    }
+    } 
 
     /***************************************************************************************************
      * retorna se está autenticado
@@ -62,12 +32,43 @@ export class SegurancaServiceLocal implements ISeguranca {
     }
 
     /***************************************************************************************************
-     * retorna a url de redirecionamento para a tela do CAS
+     * sair da aplicação
      ***************************************************************************************************/
-    public redirectCas(): void {
-        window.location.href = environment.cas;
+    public logout(): void {
+        this.limparLocalStorage(); 
+        window.location.href = 'login.html';
+    } 
+    
+    /***************************************************************************************************
+     * limpa o LOCALSTORAGE
+     ***************************************************************************************************/
+    public limparLocalStorage(): void {
+        localStorage.removeItem(Constantes.TENTATIVAS);
+        localStorage.removeItem(Constantes.USUARIO);
+        localStorage.removeItem(Constantes.ACCESS_TOKEN);
     }
 
+    /***************************************************************************************************
+     * retorna o token
+     ***************************************************************************************************/
+    public getToken(): string {
+        return `${this.access_user.token_type} ${this.access_user.access_token}`;
+    }
+
+    /***************************************************************************************************
+     *  retorna o usuário logado 
+     ***************************************************************************************************/
+    public getUsuario(): any {
+        return this.access_user.usuario;
+    } 
+
+    /***************************************************************************************************
+     *  retorna o código do usuário logado
+     ***************************************************************************************************/
+    public getIdUsuario(): any { 
+        return this.getUsuario().codigo;
+    } 
+     
 
 
     private access_user = {

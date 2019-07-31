@@ -5,16 +5,20 @@
 ***************************************************************************************************/
 export interface ISeguranca { 
 
-    validarAutenticacao(): boolean;
-    
-    getToken(): string;
-
-    logout(): void;
-
-    getHeaderAutorizacao(): string;
+    validarAutenticacao(): boolean; 
 
     isAuthenticated(): boolean;
 
-    redirectCas(): void;
+    logout(): void;
+
+    limparLocalStorage(): void;
+
+    
+
+    getToken(): string;
+
+    getUsuario(): any;
+
+    getIdUsuario(): any;
 
 }

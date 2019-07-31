@@ -5,6 +5,8 @@ import { SidebarContainerService } from '../components/sidebar/sidebar-container
 import { SidebarContainerComponent } from '../components/sidebar/sidebar-container.component';
 import { ActionBarService } from '../components/actionbar';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { SegurancaFactory } from 'src/app/services/seguranca/seguranca-factory.service';
+import { ISeguranca } from 'src/app/services/seguranca/seguranca.interface';
 
 /***************************************************************************************************
 *  Componente Principal
@@ -35,22 +37,18 @@ export class AppComponent {
     // { displayName: 'Relatório', iconName: 'search',       route: '/relatorio-fiscalizacao' },
   ]; 
 
+  private segurancaService: ISeguranca; 
   /***************************************************************************************************
    *          Construtor de pobre 
    ***************************************************************************************************/
-  constructor(private actionBarService: ActionBarService
-            , private sidebarService: SidebarContainerService
-            , private UsuarioService: UsuarioService) {
-              // console.log(environment);
-              // console.log('x_api', environment.x_api('/profissionais')); 
-              // console.log('x_cas', environment.x_cas());
-              // console.log('x_token', environment.x_token());
-              // console.log('x_autorization', environment.x_autorization());
-              // console.log('x_logout', environment.x_logout());
+  constructor(public actionBarService: ActionBarService
+            , public sidebarService: SidebarContainerService
+            , public segurancaFactory: SegurancaFactory) {
+      this.segurancaService = segurancaFactory.getSeguranca(environment);
   } 
 
   public getUsuario(): any { 
-    return this.UsuarioService.getUsuario();
+    return this.segurancaService.getUsuario();
   }  
 
   /***************************************************************************************************
