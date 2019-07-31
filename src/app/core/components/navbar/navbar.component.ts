@@ -22,7 +22,7 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
           <p class="ss-user-info">{{usuarioLogado.perfil.nome}}</p>
           <small class="ss-user-tag">Login:</small>
           <p class="ss-user-info">{{usuarioLogado.login}}</p>
-          <a class="ss-btn ss-btn-danger" href="#"><i class="material-icons ss-icon-left">exit_to_app</i>Sair</a>
+          <a class="ss-btn ss-btn-danger" href="#" (click)="sair()"><i class="material-icons ss-icon-left">exit_to_app</i>Sair</a>
         </div>
       </div> 
     </div> 
@@ -66,5 +66,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
  
+  public sair(){
+    window.location.href = 'login.html';
+  }
 
 }

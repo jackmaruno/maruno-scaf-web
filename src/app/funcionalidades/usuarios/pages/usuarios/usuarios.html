@@ -7,9 +7,7 @@
         <th>Login</th>
         <th>Perfil</th>
         <th>Data de Cadastro</th> 
-        <th>Responsável Cadastro</th> 
         <th>Última Alteração</th> 
-        <th>Responsável  Alteração</th> 
         <th></th>
       </tr>
     </thead>
@@ -20,9 +18,7 @@
         <td>{{ usuario.login }}</td> 
         <td>{{ usuario.perfil.nome }}</td> 
         <td>{{ usuario.dataCadastro }}</td> 
-        <td>{{ usuario.responsavelCadastro.nome }}</td> 
         <td>{{ usuario.dataAtualizacao }}</td> 
-        <td>{{ usuario.responsavelAtualizacao?usuario.responsavelAtualizacao.nome:'' }}</td> 
         <td>
           <botao icon="edit" label="" tipo="outline-warning" (click)="editar(usuario)" class="width-50" formato="inline"></botao>
           <botao icon="close" label="" tipo="danger" (click)="remover(usuario)" class="width-50" formato="inline"></botao>
@@ -31,7 +27,7 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="9" style="background-color: #F5F7F8 !important;">
+        <td colspan="7" style="background-color: #F5F7F8 !important;">
           <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
         </td>
       </tr>

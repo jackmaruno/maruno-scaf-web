@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';  
+import { map } from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
  
@@ -30,6 +31,9 @@ export class UsuarioService {
     public find(filtro:any): Observable<any[]> {
         let options = {params:filtro};
         return this.http.get<any[]>(this.RESOURCE(), options);
+        // .pipe(
+        //     map((response: any) => response.content)
+        // );
     }
 
     public findById(codigo: number): Observable<any[]> {
@@ -45,14 +49,13 @@ export class UsuarioService {
         }
     }
 
-    // public alterarStatus(objeto:any, status:string): Observable<any> { 
-    //     return this.http.put<any>(this.urlUsuarioSistema(objeto.codigo)+'/status/'+status, objeto);
-    // } 
+    public alterarStatus(codigo:any, status:string): Observable<any> { 
+        return this.http.put<any>(this.RESOURCE(codigo)+'/status/'+status, {});
+    } 
 
     public remove(codigo: number): Observable<any> {
         return this.http.delete<any>(this.RESOURCE(codigo));
-    }   
- 
+    }
 
     public findFotoUsuario(codigo: number): Observable<any[]> {
         return this.http.get<any[]>(this.RESOURCE(codigo)+"/foto");
@@ -63,5 +66,4 @@ export class UsuarioService {
         return this.http.put<any[]>(this.RESOURCE(codigo)+"/foto", fotoVO);
     }
 
- 
 }
