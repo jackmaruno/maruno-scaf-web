@@ -41,10 +41,17 @@ export class NavbarComponent implements OnInit {
   @Input() linkLogo: string;
 
   @Input() usuarioLogado: {
+    codigo: number,
     nome: string,
-    foto?: string,
     login: string,
-    nomePerfil: string, 
+    email: string,
+    foto?: string,
+    dataCadastro: string,
+    dataAtualizacao: string,
+    perfil?:{
+      codigo: number,
+      nome: string
+    }
   };
 
   @Input() atalhos: [{
