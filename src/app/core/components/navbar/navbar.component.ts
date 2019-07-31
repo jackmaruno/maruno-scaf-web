@@ -19,7 +19,7 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
           <small class="ss-user-tag">Usu\u00E1rio:</small>
           <p class="ss-user-info">{{usuarioLogado.nome}}</p>
           <small class="ss-user-tag">Perfil:</small>
-          <p class="ss-user-info">{{usuarioLogado.nomePerfil}}</p>
+          <p class="ss-user-info">{{usuarioLogado.perfil.nome}}</p>
           <small class="ss-user-tag">Login:</small>
           <p class="ss-user-info">{{usuarioLogado.login}}</p>
           <a class="ss-btn ss-btn-danger" href="#"><i class="material-icons ss-icon-left">exit_to_app</i>Sair</a>
