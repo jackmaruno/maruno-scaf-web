@@ -28,8 +28,8 @@ export function getLancamentosModule(){return LancamentosModule;}
 const routes: Routes = [ 
   {
       path: 'autenticar'
-    , loadChildren: './funcionalidades/login/login.module#LoginModule'
-    // , loadChildren: getLoginModule
+    // , loadChildren: './funcionalidades/login/login.module#LoginModule'
+    , loadChildren: getLoginModule
   },
   {
       path: 'dashboard'
