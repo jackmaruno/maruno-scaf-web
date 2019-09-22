@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core'; 
-
-import { Constantes } from '../../core/util/constantes';
-import { ActionBarRef, ACTIONBAR_DATA } from 'src/app/core/components/actionbar';
+import { Component, OnInit } from '@angular/core'; 
+import { Constantes } from '../../util/constantes';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/api';
+ 
 
 /***********************************
 *  @Aplicativo SCAF
@@ -20,9 +20,10 @@ export class TagsModal implements OnInit {
     /***************************************************************************************************
      *            Construtor de pobre
      ***************************************************************************************************/
-    constructor(public actionBarRef: ActionBarRef, @Inject(ACTIONBAR_DATA) public data: any  ) {
-        this.tags = data.tags;  
-        this.listTags = data.listTags;  
+    constructor(public ref: DynamicDialogRef
+        , public config: DynamicDialogConfig) {
+        this.tags = config.data.tags;  
+        this.listTags = config.data.listTags;  
     }
 
     /***************************************************************************************************
@@ -40,7 +41,7 @@ export class TagsModal implements OnInit {
                 }
             }
         }
-    }
+    } 
 
     /***************************************************************************************************
      * atualiza as tags
@@ -59,7 +60,7 @@ export class TagsModal implements OnInit {
      * fecha a tela e volta para a tela anterior
      ***************************************************************************************************/
     public fechar(valor = 'Fechado') {
-        this.actionBarRef.close({ ...{}, tags:this.tags, valor: valor });
+        this.ref.close({tags:this.tags, valor: valor }); 
     } 
 
     /***************************************************************************************************

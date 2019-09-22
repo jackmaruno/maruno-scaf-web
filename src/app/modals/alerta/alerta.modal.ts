@@ -1,61 +1,33 @@
 import { Component, Inject } from '@angular/core'; 
-
-import { Constantes } from 'src/app/core/util/constantes';
-import { ActionBarRef, ACTIONBAR_DATA } from 'src/app/core/components/actionbar';
-
+import { ActionBarRef, ACTIONBAR_DATA } from '../../components/actionbar';
+import { Constantes } from '../../util/constantes';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/api';
+ 
 /***********************************
 *  Tela de Alerta
-*  @Aplicativo Fiscalização WEB
+*  @Aplicativo SCAF WEB
 *  @Autor willian.maruno
 ***********************************/
 @Component({
   selector: 'app-alerta-modal',
-  templateUrl:'alerta.modal.html',
-  styles:[`
-
-.ss-modal-content-100{
-    width: 100% !important;
-}  
-.ss-modal-content-90{
-    width: 90% !important;
-}  
-.ss-modal-content-80{
-    width: 80% !important;
-}  
-.ss-modal-content-70{
-    width: 70% !important;
-}  
-.ss-modal-content-60{
-    width: 60% !important;
-}  
-.ss-modal-content-50{
-    width: 50% !important;
-}  
-.ss-modal-content-40{
-    width: 40% !important;
-}  
-.ss-modal-content-30{
-    width: 30% !important;
-}  
-.ss-modal-content-20{
-    width: 20% !important;
-}  
-`]
+  templateUrl:'alerta.modal.html'
 })
-export class AlertaModal { 
+export class AlertaModal {  
 
+    public data: any;
     /***************************************************************************************************
      *            Construtor de pobre
      ***************************************************************************************************/
-    constructor(public actionBarRef: ActionBarRef
-              , @Inject(ACTIONBAR_DATA) public data: any) { 
+    constructor(public ref: DynamicDialogRef
+              , public config: DynamicDialogConfig) { 
+        this.data = config.data;
     }
  
     /***************************************************************************************************
      * Fecha a tela
      ***************************************************************************************************/
-    public close(resultado): void { 
-        this.actionBarRef.close({ ...this.data, resultado: resultado});
+    public close(resultado: any): void { 
+        this.ref.close({...this.data, resultado: resultado}); 
     }
 
     /***************************************************************************************************

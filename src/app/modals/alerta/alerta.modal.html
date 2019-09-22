@@ -1,24 +1,5 @@
-<div id="alerta-modal" class="ss-modal" style="display:block;">     
-    <div class="ss-modal-content ss-modal-content-{{data.tamanho}}" >
-
-        <div class="ss-modal-header" [ngClass]="{'ss-modal-header-warning': data.tipo == 'atencao', 'ss-modal-header-danger':  data.tipo == 'erro'}">
-            <span class="ss-modal-btnclose" (click)="fechar()">&times;</span>
-            <h5>{{data.titulo}}</h5>
-        </div>
- 
-        <div class="ss-modal-body" [ngClass]="{'ss-modal-content-warning': data.tipo == 'atencao', 'ss-modal-content-danger':  data.tipo == 'erro'}"> 
-            {{data.mensagem}}
-        </div>
-
-        <div class="ss-modal-footer modal-footer" >  
-            <div class="col-sm-12">
-                <botao [label]="data.btnFechar" tipo="outline-default" (click)="fechar()" class="width-100 btn-right"></botao>
-                <botao [label]="data.btnOk"     tipo="primary"         (click)="ok()"     class="width-100 btn-right" *ngIf="data.confirmar"></botao>
-            </div>
-        </div>
-        
-    </div> 
-</div> 
-
-
- 
+{{data.mensagem}}
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary"   (click)="ok()" *ngIf="data.confirmar">{{data.btnOk}}</button>
+    <button type="button" class="btn btn-secondary" (click)="fechar()">{{data.btnFechar}}</button> 
+</div>

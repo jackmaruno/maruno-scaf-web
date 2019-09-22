@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 /***************************************************************************************************
 *  Serviço para recuperar dados de relatórios
-*  @Aplicativo Fiscalização WEB
+*  @Aplicativo SCAF WEB
 *  @Autor willian.maruno
 ***************************************************************************************************/
 @Injectable({providedIn: 'root'})
@@ -29,5 +29,5 @@ export class RelatorioService {
   public findRelatorioAgrupado():Observable<any>{  
     return this.http.get<any[]>(`${environment.rest_url}/relatorios/agrupados`);
   } 
-  
+   
 }

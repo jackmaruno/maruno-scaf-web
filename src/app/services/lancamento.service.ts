@@ -16,10 +16,7 @@ export class LancamentoService {
 	 ************************************************************************************/
     public find(filtro:any): Observable<any[]> {
         let options = {params:filtro};
-        return this.http.get<any[]>(this.RESOURCE(), options);
-        // .pipe(
-            // map((response: any) => response.map(i => ({ ...i, codigo:i.id })))
-        // );
+        return this.http.get<any[]>(this.RESOURCE(), options); 
     } 
 	/************************************************************************************
 	 * FIND LANCAMENTO

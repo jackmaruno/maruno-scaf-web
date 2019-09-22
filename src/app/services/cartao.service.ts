@@ -4,21 +4,39 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
+import { Funcoes } from '../util/funcoes';
+import { Constantes } from '../util/constantes';
  
 @Injectable({providedIn: 'root'})
-export class CartaoService {
+export class CartaoService { 
 
     constructor(private http: HttpClient) { }
 
-    public find(): Observable<any[]> {
-        return this.http.get<any[]>(this.RESOURCE()); 
-    }
+    public findCartoes(callback: any) {
+        let listCartoes = Funcoes.getItem(Constantes.LIST_CARTOES);
+        if(listCartoes == null || listCartoes.length <= 0){
+            this.http.get<any[]>(this.RESOURCE()).subscribe((response) => {
+                Funcoes.setItem(Constantes.LIST_CARTOES, response);
+                callback(response);
+            }); 
+        }else{
+            callback(listCartoes);
+        }
+    }    
 
-    public findAtivos(): Observable<any[]> {
-        return this.http.get<any[]>(this.RESOURCE()+"/ativos"); 
-    }
+    public findCartoesAtivos(callback: any) {
+        let listCartoes = Funcoes.getItem(Constantes.LIST_CARTOES_ATIVOS);
+        if(listCartoes == null || listCartoes.length <= 0){
+            this.http.get<any[]>(this.RESOURCE()+"/ativos").subscribe((response) => {
+                Funcoes.setItem(Constantes.LIST_CARTOES_ATIVOS, response);
+                callback(response);
+            }); 
+        }else{
+            callback(listCartoes);
+        }
+    }     
 
-    public save(objeto: any): Observable<any> {
+    public save(objeto: any): Observable<any> { 
         if (objeto.codigo > 0) {
             objeto.id = objeto.codigo;
             return this.http.put<any>(this.RESOURCE(objeto.codigo), objeto);
