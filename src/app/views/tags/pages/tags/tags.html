@@ -1,0 +1,35 @@
+<div class="card"> 
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+              <th>ID</th> 
+              <th>Nome</th> 
+              <th>Data de Cadastro</th> 
+              <th>Última Alteração</th> 
+              <th width="120"></th>
+          </tr>
+        </thead>
+        <tbody> 
+            <tr *ngFor="let tag of lista">
+              <td>{{ tag.codigo }}</td> 
+              <td>{{ tag.nome }}</td> 
+              <td>{{ tag.dataInclusao }}</td> 
+              <td>{{ tag.dataAlteracao }}</td>  
+            <td> 
+              <div class="row"> 
+                  <div class="col-sm-6">
+                      <button class="btn btn-mini btn-warning" (click)="editar(tag)"><i class="icon-pencil icons "></i></button>
+                  </div>
+                  <div class="col-sm-6">
+                      <button class="btn btn-mini btn-danger" (click)="remover(tag)"><i class="icon-close icons "></i></button>
+                  </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
+      <button class="btn btn-info" (click)="editar({})"> Novo</button>
+    </div>
+  </div> 
+ 

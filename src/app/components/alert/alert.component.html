@@ -1,0 +1,14 @@
+
+<div (click)="dismiss()" 
+  [class]="'alert btn-' + ((config.color) ? config.color : 'default') + ((config.extraClasses) ? ' ' + config.extraClasses : '') + ((config.position) ? ' ' + config.position : '')"
+  role="alert"
+  [ngClass]="{'is-active': open}" >
+
+  <div class="alert--message">
+      <span class="icon" *ngIf="config.icon">
+          <i [class]="config.icon"></i>
+      </span>
+    <p [innerHTML]="config.message"></p>
+  </div>
+</div>
+

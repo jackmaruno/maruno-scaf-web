@@ -1,0 +1,82 @@
+<div class="card"> 
+  <div class="card-body">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+            <th>ID</th> 
+            <th>Nome</th> 
+            <th>Login</th>
+            <th>Perfil</th>
+            <th>Data de Cadastro</th> 
+            <th>Última Alteração</th> 
+            <th width="120"></th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr *ngFor="let usuario of lista$ | async">
+            <td>{{ usuario.codigo }}</td> 
+            <td>{{ usuario.nome }}</td> 
+            <td>{{ usuario.login }}</td> 
+            <td>{{ usuario.perfil.nome }}</td> 
+            <td>{{ usuario.dataCadastro }}</td> 
+            <td>{{ usuario.dataAtualizacao }}</td> 
+          <td>   
+              <div class="row">
+                <div class="col-sm-6">
+                    <button class="btn btn-mini btn-warning" (click)="editar(usuario)"><i class="icon-pencil icons "></i></button>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-mini btn-danger" (click)="remover(usuario)"><i class="icon-close icons "></i></button>
+                </div>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table> 
+    <button class="btn btn-info" (click)="editar({})"> Novo</button> 
+
+    <ng-template #filtrosSidebar > 
+        <div class="row sidebar-content" >
+            <div class="col-sm-12 row-sub-header">Filtros de pesquisa</div>
+            <div class="col-sm-12 row-header"><HR></div> 
+    
+            <div class="ss-form-group col-sm-12 ">
+              <label>Nome</label> 
+              <div class="ss-addon" >    
+                <input class="ss-form-control" [(ngModel)]="filtro.nome" maxlength="100" type="text"  (keyup)="onKey($event)">
+              </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+    
+            <div class="ss-form-group col-sm-12 ">
+              <label>Login</label> 
+              <div class="ss-addon" >    
+                <input class="ss-form-control" [(ngModel)]="filtro.login" maxlength="100" type="text"  (keyup)="onKey($event)">
+              </div>
+            </div>
+            <div class="col-sm-12">&nbsp;</div>
+     
+            <div class="ss-form-group col-sm-12 row-col" >
+                <label>Perfil </label> 
+                <select class="form-control " [(ngModel)]="filtro.codPerfil">
+                    <option selected="selected" >Selecione</option>
+                    <option *ngFor="let p of listPerfis" [value]="p.codigo">{{p.nome}}</option> 
+                </select>
+            </div>   
+            <div class="col-sm-12">&nbsp;</div>
+    
+            <div class="col-sm-12"> 
+                <button type="button" class="btn btn-info btn-block"   (click)="pesquisar()">Pesquisar</button>
+            </div>   
+            <div class="col-sm-12">&nbsp;</div>
+    
+            <div class="col-sm-12"> 
+                <button type="button" class="btn btn-secondary btn-block" (click)="limpar()">Limpar</button> 
+            </div>  
+            <div class="col-sm-12">&nbsp;</div> 
+        </div> 
+    </ng-template> 
+
+  </div>
+</div>  
+ 

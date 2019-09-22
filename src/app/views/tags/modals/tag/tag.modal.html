@@ -1,0 +1,11 @@
+<div class="form-group" >
+    <label>Nome <span class="campo-obrigatorio-label" >*</span></label>
+    <div class="addon" >    
+        <input class="form-control"  [(ngModel)]="tag.nome" type="text" maxlength="250" placeholder="Nome" scInput >
+    </div> 
+</div>  
+
+<div class="modal-footer">  
+    <button type="button" class="btn btn-primary"   (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="fechar()">Fechar</button>  
+</div> 

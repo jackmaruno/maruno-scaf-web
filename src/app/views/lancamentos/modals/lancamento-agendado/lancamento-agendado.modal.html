@@ -1,0 +1,103 @@
+<div class="row" *ngIf="atividade" [ngClass]="{'col-sm-12': !(atividade.codCartaoCredito > 0), 'col-sm-7': atividade.codCartaoCredito > 0}">
+    
+    <div class="col-sm-6"> 
+        <label>Grupo </label>
+        <div class="campo-tags">{{atividade.nomeGrupo}}</div>
+    </div>
+    <div class="col-sm-6">  
+        <label>Categoria </label>
+        <div class="campo-tags">{{atividade.nomeCategoria}}</div>
+    </div>
+    <div class="col-sm-12"> &nbsp;</div>  
+
+    <div class="col-sm-6">  
+        <label>Data Prevista </label>
+        <div class="campo-tags">{{atividade.dataPrevista}}</div>
+    </div>
+    <div class="col-sm-6">  
+        <label>Valor Previsto </label>
+        <div class="campo-tags">{{ atividade.valorPrevisto | currency:'R$':'symbol':'1.2-2':'pt'}}</div>
+    </div>
+    <div class="col-sm-12" > &nbsp;</div> 
+
+    <div [ngClass]="{'col-sm-12': codTipoPagamento == TipoPagamentoEnum.A_VISTA
+                    , 'col-sm-6': codTipoPagamento == TipoPagamentoEnum.PARCELADO
+                    , 'col-sm-4': codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO}" > 
+        <div class="form-group" >
+            <label>Forma de Pagamento <span class="campo-obrigatorio-label" >*</span></label>
+            <ng-select [items]="listTiposPagamentos" bindLabel="nome" bindValue="codigo" placeholder="Selecione" [(ngModel)]="codTipoPagamento" [disabled]="atividade.codCartaoCredito > 0"  (change)="setListCartoes()"></ng-select> 
+        </div>   
+    </div>
+
+    <div [ngClass]="{'col-sm-6': codTipoPagamento == TipoPagamentoEnum.PARCELADO 
+                    , 'col-sm-3': codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO}" *ngIf="codTipoPagamento > TipoPagamentoEnum.A_VISTA "> 
+        <div class="form-group" >
+            <label>Em quantas vezes?<span class="campo-obrigatorio-label" >*</span></label>
+            <input type="number" [(ngModel)]="numParcelas" class="form-control" > 
+        </div>  
+    </div>
+
+    <div class="col-sm-5" *ngIf="codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO">  
+        <div class="form-group" >
+            <label>Cartão <span class="campo-obrigatorio-label" >*</span></label>
+            <ng-select [items]="listCartoes" bindLabel="nome" placeholder="Selecione" [(ngModel)]="cartaoCredito" ></ng-select> 
+        </div>   
+    </div>
+    <div class="col-sm-12"> &nbsp;</div> 
+
+
+
+    <div class="col-sm-6"> 
+        <div class="form-group" >
+            <label>Data de Referência <span class="campo-obrigatorio-label" >*</span></label> 
+            <div class="addon" >    
+                <input class="form-control" [(ngModel)]="dataReferencia" type="tel" maxlength="10" bsDatepicker >
+            </div> 
+        </div>  
+    </div>
+    <div class="col-sm-6">  
+        <div class="form-group" >
+            <label>Valor {{codTipoPagamento > TipoPagamentoEnum.A_VISTA ? 'da Parcela':''}}<span class="campo-obrigatorio-label" >*</span></label>
+            <input class="form-control" [(ngModel)]="valor" type="tel"  maxlength="12" mascara="MONETARIO" >
+        </div>   
+    </div> 
+    <div class="col-sm-12" > &nbsp;</div> 
+
+    <div class="col-sm-12">  
+        <div class="form-group" >
+            <label>Descrição </label>
+            <div class="addon" >    
+                <textarea class="form-control" [(ngModel)]="descricao" maxlength="3750" style="width: 100% !important;" rows="4" ></textarea>
+            </div> 
+        </div> 
+    </div> 
+</div> 
+
+<div class="col-sm-5" *ngIf="atividade.codCartaoCredito > 0">
+        <label><b>Lançamentos da Fatura</b> </label>
+    <div class="table table-striped table-sortable">
+        <table >
+            <thead>
+                <tr>
+                    <th>Nº</th>
+                    <th>Data</th> 
+                    <th>Categoria</th> 
+                    <th>Valor</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let parcela of listParcelas" > 
+                    <td>{{ parcela.numero }}</td> 
+                    <td>{{ parcela.lancamento.dataReferencia }}</td>  
+                    <td>{{ parcela.lancamento.categoria.nome }}</td>  
+                    <td>{{ parcela.valor | currency:'R$':'symbol':'1.2-2':'pt'}}</td>  
+                </tr>
+            </tbody> 
+        </table>
+    </div> 
+</div> 
+
+<div class="modal-footer" >   
+    <button type="button" class="btn btn-primary"   (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="fechar()">Fechar</button>  
+</div> 

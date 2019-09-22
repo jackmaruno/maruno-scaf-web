@@ -1,0 +1,51 @@
+<div class="card"> 
+    <div class="card-body">
+      <table class="table table-bordered table-striped ">
+        <thead>
+          <tr>
+              <th>ID</th> 
+              <th>Nome</th> 
+              <th>Bandeira</th>
+              <th>Vencimento</th>
+              <th>Fechamento</th>
+              <th>Data de Cadastro</th> 
+              <th>Última Alteração</th> 
+              <th>Status</th> 
+              <th></th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let cartao of lista">
+              <td>{{ cartao.codigo }}</td> 
+              <td>{{ cartao.nome }}</td> 
+              <td>{{ cartao.bandeira }}</td> 
+              <td>{{ cartao.vencimento }}</td> 
+              <td>{{ cartao.fechamento }}</td> 
+              <td>{{ cartao.dataInclusao }}</td> 
+              <td>{{ cartao.dataAlteracao }}</td> 
+              <td>{{ cartao.ativo ?'Ativo':'Inativo' }}</td> 
+            <td> 
+              <div class="row">
+                  <div class="col-sm-4"> 
+                      <button class="btn btn-mini btn-outline-danger" (click)="alterarStatus(cartao)" *ngIf="cartao.ativo">
+                        <i class="icons icon-dislike" ></i>
+                      </button>
+
+                      <button class="btn btn-mini btn-outline-success" (click)="alterarStatus(cartao)" *ngIf="!cartao.ativo">
+                        <i class="icons icon-like" ></i>
+                      </button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-warning" (click)="editar(cartao)"><i class="icon-pencil icons "></i></button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-danger" (click)="remover(cartao)"><i class="icon-close icons "></i></button>
+                  </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-info" (click)="editar({})"> Novo</button> 
+    </div>
+  </div>

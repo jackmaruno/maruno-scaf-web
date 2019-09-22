@@ -1,0 +1,97 @@
+
+<p-table [value]="lista$ | async" [paginator]="true" [rows]="10" [responsive]="true"  class="table-striped ">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nº</th>
+            <th>Grupo</th> 
+            <th>Categoria</th> 
+            <th>Tipo de Pagamento</th> 
+            <th>Etiquetas</th> 
+            <th>Data Lancamento</th> 
+            <th>Data Referência</th> 
+            <th>Valor</th> 
+            <th width="180"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-lancamento>
+        <tr>
+            <td>{{ lancamento.codigo }}</td> 
+            <td>{{ lancamento.categoria.grupo.nome }}</td> 
+            <td>{{ lancamento.categoria.nome }}</td> 
+            <td>{{ lancamento.descTipoPagamento }}</td> 
+            <td> 
+              <tags-list [tags]="lancamento.tags"></tags-list> 
+            </td> 
+            <td>{{ lancamento.dataLancamento }}</td> 
+            <td>{{ lancamento.dataReferencia }}</td> 
+            <td> 
+              <span *ngIf="lancamento.codTipoPagamento == TipoPagamentoEnum.A_VISTA">{{ lancamento.valor | currency:'R$':'symbol':'1.2-2':'pt'}}</span> 
+              <span *ngIf="lancamento.codTipoPagamento > TipoPagamentoEnum.A_VISTA">{{ lancamento.valorPrevisto | currency:'R$':'symbol':'1.2-2':'pt'}}</span> 
+            </td> 
+            <td>
+                <div class="row">
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-outline-warning" (click)="editar(lancamento)" *ngIf="lancamento.codTipoPagamento == TipoPagamentoEnum.A_VISTA && (lancamento.categoria.codigo != 48 && lancamento.categoria.codigo != 46 && lancamento.categoria.codigo != 63)"><i class="icon-pencil icons "></i></button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-outline-success" (click)="visualizar(lancamento)"><i class="fa fa-search"></i></button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-danger" (click)="remover(lancamento)"><i class="icon-close icons "></i></button>
+                  </div>
+                </div>
+            </td>
+        </tr>
+    </ng-template> 
+</p-table>
+<BR>
+
+  <button class="btn btn-info" (click)="editar({})"> Novo</button> 
+
+<ng-template #filtrosSidebar > 
+    <div class="row sidebar-content" >
+        <div class="col-sm-12 row-sub-header">Filtros de pesquisa</div>
+        <div class="col-sm-12 row-header"><HR></div> 
+
+        <div class="form-group col-sm-12 ">
+          <label>Nº Lançamento</label> 
+          <div class="addon" >    
+            <input class="form-control" [(ngModel)]="filtro.codLancamento" maxlength="9" type="tel" mascara="INTEIRO" (keyup)="onKey($event)">
+          </div>
+        </div>
+ 
+        <div class="form-group col-sm-12 row-col" >
+            <label>Grupo </label>
+            <select class="form-control " [(ngModel)]="grupo">
+                <option>Selecione</option>
+                <option *ngFor="let g of listGrupos" [ngValue]="g">{{g.nome}}</option> 
+            </select>
+        </div> 
+
+        <div class="form-group col-sm-12 row-col" >
+            <label>Categoria </label>
+            <select class="form-control " [(ngModel)]="filtro.codCategoria">
+                <option>Selecione</option>
+                <option *ngFor="let c of grupo.listCategorias" [value]="c">{{c.nome}}</option> 
+            </select>
+        </div>  
+
+        <div class="form-group col-sm-12 ">
+          <label>Período</label> 
+          <div class="addon" >    
+              <input class="form-control" [(ngModel)]="periodo" type="tel" maxlength="23" bsDaterangepicker >
+          </div>
+        </div> 
+        <div class="col-sm-12">&nbsp;</div>
+
+        <div class="col-sm-12"> 
+            <button type="button" class="btn btn-info btn-block"   (click)="pesquisar()">Pesquisar</button>
+        </div>   
+        <div class="col-sm-12">&nbsp;</div>
+
+        <div class="col-sm-12"> 
+            <button type="button" class="btn btn-secondary btn-block" (click)="limpar()">Limpar</button> 
+        </div>  
+        <div class="col-sm-12">&nbsp;</div> 
+    </div> 
+</ng-template> 

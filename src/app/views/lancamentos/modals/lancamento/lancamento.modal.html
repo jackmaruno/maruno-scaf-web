@@ -1,0 +1,185 @@
+<div class="row"> 
+    <div class="row" [ngClass]="{'col-sm-12': !isParcelaOrFatura(), 'col-sm-7': isParcelaOrFatura()}">
+        
+        <div class="col-sm-6"> 
+            <div class="form-group" >
+                <label>Grupo <span class="campo-obrigatorio-label" >*</span></label>
+                <p-dropdown class="combo" [options]="listGrupos" [(ngModel)]="grupo" placeholder="Selecione um Grupo" optionLabel="nome" [showClear]="true" [disabled]="lancamento.codigo > 0" scrollHeight="30"></p-dropdown>
+            </div>  
+        </div>
+        <div class="col-sm-6">  
+            <div class="form-group" >
+                <label>Categoria <span class="campo-obrigatorio-label" >*</span></label>
+                <p-dropdown class="combo" [options]="grupo.listCategorias" [(ngModel)]="lancamento.categoria" placeholder="Selecione uma Categoria" optionLabel="nome" [showClear]="true" [disabled]="lancamento.codigo > 0" (onChange)="setCategoria()"></p-dropdown>
+            </div>   
+        </div>
+
+        <div class="col-sm-12">  
+            <label>Etiquetas </label> 
+            <div style="border: 1px #34495E solid; padding: 10px 10px 10px 10px; min-height: 30px; background-color: white;" (click)="openTags()">
+                <tags-list [tags]="lancamento.tags"></tags-list>
+            </div>
+        </div> 
+        <div class="col-sm-12"> &nbsp;</div> 
+
+        <div [ngClass]="{'col-sm-12': lancamento.codTipoPagamento == TipoPagamentoEnum.A_VISTA
+                    , 'col-sm-6': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO
+                    , 'col-sm-4': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO}" *ngIf="!isEmprestimo()"> 
+            <div class="form-group" >
+                <label>Forma de Pagamento <span class="campo-obrigatorio-label" >*</span></label>
+                <select class="form-control " [(ngModel)]="lancamento.codTipoPagamento" [disabled]="lancamento.codigo > 0 || isFatura() || isEmprestimo()">
+                    <option>Selecione</option>
+                    <option *ngFor="let tp of listTiposPagamentos" [value]="tp.codigo">{{tp.nome}}</option> 
+                </select> 
+            </div>   
+        </div>
+
+        <div [ngClass]="{'col-sm-6': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO || isEmprestimo()
+                    , 'col-sm-3': lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO}" *ngIf="lancamento.codTipoPagamento > TipoPagamentoEnum.A_VISTA || isEmprestimo()"> 
+            <div class="form-group" >
+                <label>Em quantas vezes?<span class="campo-obrigatorio-label" >*</span></label>
+                <input type="number" [(ngModel)]="numParcelas" class="form-control"  [disabled]="lancamento.codigo > 0"> 
+            </div>  
+        </div>
+
+        <div class="col-sm-5" *ngIf="lancamento.codTipoPagamento == TipoPagamentoEnum.PARCELADO_CARTAO">  
+            <div class="form-group" >
+                <label>Cartão <span class="campo-obrigatorio-label" >*</span></label>
+                <p-dropdown class="combo" [options]="listCartoes" [(ngModel)]="lancamento.cartaoCredito" placeholder="Selecione" optionLabel="nome" [showClear]="true" ></p-dropdown>
+            </div>   
+        </div>
+
+        <div class="col-sm-6"> 
+            <div class="form-group" >
+                <label>Data de Referência <span class="campo-obrigatorio-label" >*</span></label> 
+                <div class="addon" >    
+                    <input class="form-control" [(ngModel)]="lancamento.dataReferencia" type="tel" maxlength="10" bsDatepicker >
+                </div> 
+            </div>  
+        </div>
+
+        <div class="col-sm-4" *ngIf="isEmprestimo()"> 
+            <div class="form-group" >
+                <label>Data da 1ª Parcela <span class="campo-obrigatorio-label" >*</span></label> 
+                <div class="addon" >    
+                    <input class="form-control" [(ngModel)]="dataFatura" type="tel" maxlength="10" bsDatepicker >
+                </div> 
+            </div>  
+        </div>
+
+
+        <div [ngClass]="{'col-sm-6': !isEmprestimo(), 'col-sm-4': isEmprestimo()}">  
+            <div class="form-group" >
+                <label>Valor {{lancamento.codTipoPagamento > TipoPagamentoEnum.A_VISTA ? 'da Parcela':''}}<span class="campo-obrigatorio-label" >*</span></label>
+                <input class="form-control" [(ngModel)]="lancamento.valor" type="tel"  maxlength="12" mascara="MONETARIO" >
+            </div>   
+        </div>
+
+        <div class="col-sm-4" *ngIf="isEmprestimo()">  
+            <div class="form-group" >
+                <label>Valor da Parcela<span class="campo-obrigatorio-label" >*</span></label>
+                <input class="form-control" [(ngModel)]="lancamento.valorPrevisto" type="tel"  maxlength="12" mascara="MONETARIO" >
+            </div>   
+        </div>
+
+        <div class="col-sm-12">  
+            <label>Descrição </label>
+            <div class="addon" >    
+                <textarea class="form-control" [(ngModel)]="lancamento.descricao" maxlength="3750" style="width: 100% !important;" rows="4" ></textarea>
+            </div> 
+        </div> 
+    </div> 
+
+    <div class="col-sm-5" *ngIf="isFatura()">
+        <div class="row">  
+            <div class="col-sm-12">  
+                <div class="form-group" >
+                    <label>Cartão <span class="campo-obrigatorio-label" >*</span></label>
+                    <p-dropdown class="combo" [options]="listCartoes" [(ngModel)]="cartaoCredito" 
+                                placeholder="Selecione" optionLabel="nome" [showClear]="true" (onChange)="findDatasFaturas()"></p-dropdown>
+                </div>   
+            </div>
+            <div class="col-sm-12" *ngIf="cartaoCredito && cartaoCredito.codigo > 0">  
+                <div class="form-group" >
+                    <label>Data de Vencimento da Fatura <span class="campo-obrigatorio-label" >*</span></label>
+                    <p-dropdown class="combo" [options]="listFaturas" [(ngModel)]="fatura" 
+                                placeholder="Selecione" optionLabel="descricao" [showClear]="true" (onChange)="findParcelasByFatura()"></p-dropdown>
+                </div>   
+            </div>
+            <div class="col-sm-12"  *ngIf="cartaoCredito && cartaoCredito.codigo > 0">    
+                <div class="table table-striped table-sortable">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Data</th> 
+                                <th>Categoria</th> 
+                                <th>Valor</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let parcela of listParcelas" > 
+                                <td>{{ parcela.numero }}</td> 
+                                <td>{{ parcela.lancamento.dataReferencia }}</td>  
+                                <td>{{ parcela.lancamento.categoria.nome }}</td>  
+                                <td>{{ parcela.valor | currency:'R$':'symbol':'1.2-2':'pt'}}</td>  
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div> 
+            </div>
+        </div>
+    </div> 
+
+    <div class="col-sm-5" *ngIf="isParcela()">
+        <div class="row">  
+            <div class="col-sm-12" >  
+                <div class="form-group" >
+                    <label>Competência <span class="campo-obrigatorio-label" >*</span></label>
+                    <p-dropdown class="combo" [options]="listDatasParcelas" [(ngModel)]="dataParcela" 
+                                placeholder="Selecione" optionLabel="data" [showClear]="true" (onChange)="findParcelasPendentes()"></p-dropdown>
+                </div>   
+            </div>
+
+            <div class="col-sm-12" *ngIf="dataParcela && dataParcela.anoMes">  
+                <div class="form-group" >
+                    <label>Parcela <span class="campo-obrigatorio-label" >*</span></label>
+                    <p-dropdown class="combo" [options]="listParcelasPendentes" [(ngModel)]="parcela" 
+                                placeholder="Selecione" optionLabel="descricao" [showClear]="true" (onChange)="setParcelaPendente()"></p-dropdown>
+                </div>   
+            </div>
+            
+            <div class="col-sm-12" *ngIf="dataParcela && dataParcela.anoMes">Parcelas Pagas</div>
+            <div class="col-sm-12" *ngIf="dataParcela && dataParcela.anoMes">    
+                <div class="table table-striped table-sortable">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Data</th> 
+                                <th>Data Pagamento</th> 
+                                <th>Categoria</th> 
+                                <th>Valor</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let parcela of listParcelas" > 
+                                <td>{{ parcela.numero }}</td> 
+                                <td>{{ parcela.data }}</td>  
+                                <td>{{ parcela.lancamento.dataReferencia }}</td>  
+                                <td>{{ parcela.lancamento.categoria.nome }}</td>  
+                                <td>{{ parcela.valor | currency:'R$':'symbol':'1.2-2':'pt'}}</td>  
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div> 
+            </div>
+        </div>
+    </div> 
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary"   (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="fechar()">Fechar</button> 
+</div>  

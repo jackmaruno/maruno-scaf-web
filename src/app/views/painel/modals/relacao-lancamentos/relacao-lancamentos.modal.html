@@ -1,0 +1,31 @@
+<div class="row" *ngIf="atividade && atividade.codTipo > 0">
+    <div class="col-lg-12"> <h2>{{atividade.descricao}}</h2>  </div>
+    <div class="col-lg-12"><h4><b>Total Realizado:</b> {{ atividade.valorPago | currency:'R$':'symbol':'1.2-2':'pt'}}</h4></div>
+    <div class="col-lg-12"></div>
+    <div class="col-lg-12 table table-striped table-sortable">
+        <p-table [value]="lista" [paginator]="true" [rows]="10" [responsive]="true"  class="table-striped ">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nº</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Data Referência</th>
+                    <th>Data Lancamento</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-lancamento>
+                <tr>
+                        <td>{{ lancamento.codigo }}</td>
+                        <td>{{ lancamento.nomeCategoria}}</td> 
+                        <td>{{ lancamento.valorPago | currency:'R$':'symbol':'1.2-2':'pt'}}</td>
+                        <td>{{ lancamento.dataReferencia }}</td>
+                        <td>{{ lancamento.dataLancamento }}</td>
+                </tr>
+            </ng-template> 
+        </p-table>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="fechar()">Fechar</button> 
+</div>  

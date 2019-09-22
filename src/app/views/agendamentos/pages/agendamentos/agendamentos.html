@@ -1,0 +1,61 @@
+  <div class="card"> 
+    <div class="card-body">
+      <table class="table table-bordered table-striped ">
+        <thead>
+          <tr>
+            <th>ID</th> 
+            <th>Nome</th> 
+            <th>Data de Início</th>
+            <th>Período</th>
+            <th>Categoria</th>
+            <th>Data de Cadastro</th> 
+            <th>Última Alteração</th> 
+            <th>Status</th> 
+            <th></th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let agendamento of lista$ | async">
+            <td>{{ agendamento.codigo }}</td> 
+            <td>{{ agendamento.nome }}</td> 
+            <td>{{ agendamento.dataInicio }}</td> 
+            <td>{{ agendamento.periodo.nome }}</td> 
+            <td>{{ agendamento.categoria.nome }}</td>  
+            <td>{{ agendamento.dataInclusao }}</td> 
+            <td>{{ agendamento.dataAlteracao }}</td> 
+            <td>{{ agendamento.ativo ?'Ativo':'Inativo' }}</td> 
+            <td> 
+              <div class="row">
+                  <div class="col-sm-4"> 
+                      <button class="btn btn-mini btn-outline-danger" (click)="alterarStatus(agendamento)" *ngIf="agendamento.ativo">
+                        <i class="icons icon-dislike" ></i>
+                      </button>
+
+                      <button class="btn btn-mini btn-outline-success" (click)="alterarStatus(agendamento)" *ngIf="!agendamento.ativo">
+                        <i class="icons icon-like" ></i>
+                      </button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-warning" (click)="editar(agendamento)"><i class="icon-pencil icons "></i></button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn-mini btn-danger" (click)="remover(agendamento)"><i class="icon-close icons "></i></button>
+                  </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-info" (click)="editar({})" style="color: white;"> <i class="fa fa-plus-circle"></i> &nbsp;Novo</button>
+      <!-- <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul> -->
+    </div>
+  </div>  

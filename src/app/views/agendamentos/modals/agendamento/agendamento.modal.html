@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group" >
+            <label>Nome </label>
+            <div class="addon" >    
+                <input class="form-control"  [(ngModel)]="agendamento.nome" type="text" maxlength="250" placeholder="Nome"  >
+            </div> 
+        </div> 
+
+        <div class="form-group" >
+            <label>Descrição </label>
+            <div class="addon" >    
+                <textarea class="form-control" [(ngModel)]="agendamento.descricao" maxlength="3750" style="width: 100% !important;" rows="7" ></textarea>
+            </div> 
+        </div> 
+    </div>
+
+    <div class="col-sm-6"> 
+        <div class="form-group" >
+            <label>Grupo </label>  
+            <p-dropdown class="combo" [options]="listGrupos" [(ngModel)]="grupo" placeholder="Selecione um Grupo" optionLabel="nome" [showClear]="true"></p-dropdown>
+        </div> 
+
+        <div class="form-group" >
+            <label>Categoria </label> 
+            <p-dropdown class="combo" [options]="grupo.listCategorias" [(ngModel)]="agendamento.categoria" placeholder="Selecione uma Categoria" optionLabel="nome" [showClear]="true"></p-dropdown>
+        </div>  
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group" >
+                    <label>Data de Início </label>
+                    <div class="addon" >    
+                        <input class="form-control" [(ngModel)]="agendamento.dataInicio" type="tel"  maxlength="10"  bsDatepicker >
+                    </div> 
+                </div> 
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" >
+                    <label>Período </label> 
+                    <p-dropdown class="combo" [options]="listPeriodos" [(ngModel)]="agendamento.periodo" placeholder="Selecione um Período" optionLabel="nome" [showClear]="true"></p-dropdown>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary"   (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="fechar()">Fechar</button> 
+</div>  

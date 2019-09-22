@@ -1,0 +1,50 @@
+<div class="form-group" >
+    <label>Nome </label>
+    <div class="addon" >    
+        <span class="form-control campo-bloqueado" *ngIf="usuario.codigo > 0">{{usuario.nome}}</span>
+        <input class="form-control"  [(ngModel)]="usuario.nome" type="text" *ngIf="!(usuario.codigo > 0)" >
+    </div> 
+</div>  
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group" >
+                    <label>Perfil <span class="campo-obrigatorio-label" >*</span></label>
+                    <select class="form-control " [(ngModel)]="usuario.perfil">
+                        <option selected="selected" >Selecione</option>
+                        <option *ngFor="let p of listPerfis" [ngValue]="p">{{p.nome}}</option> 
+                    </select>
+                </div>  
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group" >
+                    <label>Login </label>
+                    <div class="addon" >    
+                        <span class="form-control campo-bloqueado" *ngIf="usuario.codigo > 0">{{usuario.login}}</span>
+                        <input class="form-control"  [(ngModel)]="usuario.login" type="text" *ngIf="!(usuario.codigo > 0)" >
+                    </div> 
+                </div> 
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group" >
+                    <label>E-mail <span class="campo-obrigatorio-label" >*</span></label>
+                    <div class="addon" >    
+                        <input class="form-control"  [(ngModel)]="usuario.email" type="text" scInput >
+                    </div> 
+                </div> 
+            </div> 
+            
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <img class="user-img" [src]="usuario.foto? usuario.foto:'assets/img/ico-person.svg'"> 
+    </div>
+</div> 
+
+<div class="modal-footer" style="height: 65px;">   
+    <button type="button" class="btn btn-primary"   (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="fechar()">Fechar</button> 
+</div> 

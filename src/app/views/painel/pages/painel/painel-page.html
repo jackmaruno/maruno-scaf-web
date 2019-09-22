@@ -1,0 +1,15 @@
+<div *ngIf="dados">
+    <atividades [lista]="dados.atividadesMes"></atividades>
+    <div class="row">
+        <section class="col-lg-6 connectedSortable">
+            <ultimas-atividades [lista]="dados.ultimasAtividades"></ultimas-atividades>
+            <chart-mes [lista]="dados.atividadesMes"></chart-mes>
+            <chart-meses [lista]="dados.atividadesMeses"></chart-meses>
+        </section>
+
+        <section class="col-lg-6 connectedSortable">
+            <proximas-atividades [lista]="dados.proximasAtividades"></proximas-atividades>
+            <chart-total-mes [lista]="dados.atividadesMes"></chart-total-mes>
+        </section>
+    </div>
+</div>

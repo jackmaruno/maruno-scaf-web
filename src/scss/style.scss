@@ -1,0 +1,283 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+
+.modal{
+    opacity: 1 !important; 
+    overflow: auto !important;
+    display:block;
+} 
+
+.modal-body{
+    background-color: #e0f0ff !important;
+}
+
+.card-body{
+    .painel{
+        padding: unset !important;
+    }
+}
+
+.card{
+    overflow: auto !important;
+    .painel{
+        padding: unset !important;
+    }
+}
+
+.ng-dropdown-panel{
+    opacity: 1 !important; 
+    background-color: #99f !important;
+    border: 1px #555 !important;
+}
+
+.btn-danger {
+    color: #fff !important;
+    background-color: #f86c6b !important;
+    border-color: #f86c6b !important;
+}
+.btn-warning {
+    color: #23282c !important;
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.btn-mini {
+    height: 40px !important;
+    width: 40px !important;
+}
+
+.btn-tag{
+    margin: 5px 5px 5px 5px !important;
+}
+
+label{
+    font-weight: bold;
+}
+
+
+.label-success {
+    color: #FFFFFF !important;
+    background-color: #5cb85c;
+}
+.label-info {
+    color: #FFFFFF !important;
+    background-color: #5bc0de;
+}
+.label-warning {
+    background-color: #f0ad4e;
+}
+.label-danger {
+    color: #FFFFFF !important;
+    background-color: #d9534f;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(240, 243, 245) !important
+}
+
+.app-sidebar {
+    grid-column: span 1;
+    background-color: white;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.16);
+    border-left: 1px solid #DADFE6;;
+    // padding: 20px;
+    overflow: auto;
+    display: block;
+    height: 100% !important;
+}
+
+.sidebar-content{
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 20px;
+} 
+
+.app-sidebar-event .app-content {
+    grid-column: span 1;
+}
+
+.app-sidebar-event .app-sidebar {
+    display: block;
+}
+
+.app-sidebar-header,
+.app-sidebar-body,
+.app-sidebar-footer {
+    padding: 20px;
+}
+
+.app-sidebar-header {
+    border-bottom: 1px solid #00ff00;;
+    // border-bottom: 1px solid #DADFE6;;
+    // p,
+    // h1,
+    // h2,
+    // h3,
+    // h4,
+    // h5,
+    // h6,
+    // a {
+    //     margin: 0;
+    // }
+}
+
+.app-sidebar-footer {
+    border-top: 1px solid #f00;;
+    // border-top: 1px solid #DADFE6;;
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a {
+        margin: 0;
+    }
+}
+
+
+.combo{
+    .ui-dropdown{
+        width: 100% !important;
+    }
+}
+
+.modal-danger{
+    .ui-widget-header{
+        background-color: #f86c6b !important;
+        border-color: #f86c6b !important;
+        color: #fff !important;
+    }
+    .ui-widget-content{
+        border: 2px solid #f86c6b !important; 
+    }
+}
+
+.modal-warning{
+    .ui-widget-header{
+        background-color: #ffc107 !important;
+        border-color: #ffc107 !important;
+        color: #23282c !important;
+    }
+    .ui-widget-content{
+        border: 2px solid #FFFF00 !important;
+    }
+}
+
+ng-trigger ng-trigger-animation ng-tns-c2-1 btn-danger ui-dialog ui-dynamicdialog ui-widget ui-widget-content ui-corner-all ui-shadow ng-star-inserted
+
+
+
+
+.row-header{
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.row-header hr{
+    border-top: 1px solid #868585;
+}
+
+.row-sub-header{
+    font-size: 16px;
+    color: #868585 !important;
+    text-transform: uppercase;
+} 
+
+.row-sub-header hr{
+    border-top: 1px dashed #868585;
+}
+
+
+
+.pagination-link{
+    cursor: pointer; 
+    .label-small{
+        font-size: 10px !important;
+        padding: 5px 5px 5px 5px !important;
+    }
+}
+
+.pagination-link:hover{
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.068) !important;
+}
+
+.pagination-link:hover .text{ 
+    font-weight: bold !important;
+    color: #000080 !important;
+    text-decoration: underline;
+}
+
+.pagination-link-small{
+    font-size: 12px !important;
+    color: #000 !important;
+}
+
+.pagination-link-large{
+    font-size: 19px !important;
+    color: #0000FF !important;
+}
+
+
+.pagination > li:first-of-type a, .pagination > li:last-of-type a {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.pagination-sm>li:first-child>a, .pagination-sm>li:first-child>span {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.pagination > li > a {
+    background: #fafafa;
+    color: #666;
+    -webkit-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
+    box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+}
+.pagination-sm>li>a, .pagination-sm>li>span {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+
+.sombreado {
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5) !important;
+} 
+
+.todo-list{
+    li {
+        border-radius: 2px;
+        padding: 10px;
+        background: #f3f4f5;
+        margin-bottom: 2px;
+        border-left: 2px solid #e6e7e8;
+        color: #444;
+        display: flow-root;
+    }
+}

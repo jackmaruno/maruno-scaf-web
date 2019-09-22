@@ -1,0 +1,148 @@
+<div class="row">
+    <div class="col-sm-12 row-header">Despesas</div>
+    <div class="col-sm-12 row-header"><HR></div> 
+    <div class="col-sm-12">
+      <div class="p-treeTable">
+          <p-treeTable [value]="despesas">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th class="p-treeTable-name">Nome</th> 
+                      <th>Tipo</th> 
+                      <th>Tags</th> 
+                      <th>Data Refêrencia</th> 
+                      <th>Valor Previsto</th> 
+                      <th>Valor Lancamento</th> 
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                  <tr>
+                      <td>
+                          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                          {{rowData.nome}}
+                      </td>
+                      <td>{{rowData.nomeTipo}}</td>
+                      <td>{{rowData.tags}}</td>
+                      <td>{{rowData.dataReferencia}}</td>
+                      <td>{{rowData.valorPrevisto | currency:'R$':'symbol':'1.2-2':'pt'}}</td>
+                      <td>{{rowData.valorLancamento | currency:'R$':'symbol':'1.2-2':'pt'}}</td> 
+                  </tr>
+              </ng-template>
+          </p-treeTable>
+      </div>
+    </div> 
+    <div class="col-sm-12">&nbsp;</div> 
+    <div class="col-sm-12">&nbsp;</div> 
+
+    <div class="col-sm-12 row-header">Receitas</div>
+    <div class="col-sm-12 row-header"><HR></div> 
+    <div class="col-sm-12">
+        <div class="p-treeTable">
+          <p-treeTable [value]="receitas">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th class="p-treeTable-name">Nome</th> 
+                      <th>Tipo</th> 
+                      <th>Tags</th> 
+                      <th>Data Refêrencia</th> 
+                      <th>Valor Previsto</th> 
+                      <th>Valor Lancamento</th> 
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                  <tr>
+                      <td>
+                          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                          {{rowData.nome}}
+                      </td>
+                      <td>{{rowData.nomeTipo}}</td>
+                      <td>{{rowData.tags}}</td>
+                      <td>{{rowData.dataReferencia}}</td>
+                      <td>{{rowData.valorPrevisto | currency:'R$':'symbol':'1.2-2':'pt'}}</td>
+                      <td>{{rowData.valorLancamento | currency:'R$':'symbol':'1.2-2':'pt'}}</td> 
+                  </tr>
+              </ng-template>
+          </p-treeTable>
+      </div>
+    </div> 
+</div>
+
+
+ 
+
+<ng-template #filtrosSidebar > 
+    <div class="row sidebar-content" *ngIf="relatorio" >
+        <div class="col-sm-12 row-sub-header">Filtros</div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="fa fa-dashboard"></i> {{filtros[0].nome}} 
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[0])">
+                <i  style="color: #3c8dbc; font-size: 28px" class="fa" [ngClass]="{'fa-check-square-o': filtros[0].check , 'fa-square-o': !filtros[0].check}" ></i>
+            </div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="form-group col-sm-12"  *ngIf="relatorio && relatorio.tipos"> 
+            <button class="btn btn-format-inline btn-check" *ngFor="let tipo of relatorio.tipos" (click)="set(tipo)" [ngClass]="{'btn-primary':tipo.check === true, 'btn-secondary': tipo.check === false}">
+                <i class="icon-check" *ngIf="tipo.check"></i> {{tipo.nome}}
+            </button>
+        </div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="icon-cursor"></i> {{filtros[1].nome}}
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[1])">
+                <i  style="color: #3c8dbc; font-size: 28px" class="fa" [ngClass]="{'fa-check-square-o': filtros[1].check , 'fa-square-o': !filtros[1].check}" ></i> 
+            </div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="form-group col-sm-12"  *ngIf="relatorio && relatorio.tags"> 
+            <button class="btn btn-format-inline btn-check" *ngFor="let tag of relatorio.tags" (click)="set(tag)" [ngClass]="{'btn-primary':tag.check === true, 'btn-secondary': tag.check === false}"> 
+                <i class="icon-check" *ngIf="tag.check"></i> {{tag.nome}}
+            </button>
+        </div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="fa fa-clock-o"></i> {{filtros[2].nome}}
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[2])"> 
+                <i  style="color: #3c8dbc; font-size: 28px" class="fa" [ngClass]="{'fa-check-square-o': filtros[2].check , 'fa-square-o': !filtros[2].check}" ></i> 
+            </div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="form-group col-sm-12"  *ngIf="meses"> 
+            <button class="btn btn-format-inline btn-check" *ngFor="let mes of meses" (click)="set(mes)" [ngClass]="{'btn-primary':mes.check === true, 'btn-secondary': mes.check === false}">
+                <i class="icon-check" *ngIf="mes.check"></i> {{mes.nome}}
+            </button>
+        </div>
+        <div class="col-sm-12 row-header"><HR></div> 
+          
+        <div class="col-sm-12 row-sub-header">
+          <i class="fa fa-navicon"></i> {{filtros[3].nome}}
+          <div style="float: right;"> 
+            <div class="btnCheck" (click)="selecionarFiltro(filtros[3])">
+                <i  style="color: #3c8dbc; font-size: 28px" class="fa" [ngClass]="{'fa-check-square-o': filtros[3].check , 'fa-square-o': !filtros[3].check}" ></i> 
+            </div> 
+          </div> 
+        </div>
+        <div class="col-sm-12">&nbsp;</div> 
+        <div class="form-group col-sm-12"  *ngIf="relatorio && relatorio.grupos" style="padding-left: 20px; padding-right: 20px; overflow: scroll; height: 400px;"> 
+
+            <div class="row relatorio-grupo" *ngFor="let grupo of relatorio.grupos" > 
+                <div class="col-sm-12 row-sub-header">{{grupo.nome}}</div>
+                <div class="col-sm-12 row-sub-header"><HR></div> 
+                <div class="col-sm-12">
+                    <button class="btn btn-format-inline btn-check" *ngFor="let categoria of grupo.listCategorias" (click)="set(categoria)" [ngClass]="{'btn-primary':categoria.check === true, 'btn-secondary': categoria.check === false}">
+                        <i class="icon-check" *ngIf="categoria.check"></i> {{categoria.nome}}
+                    </button>
+                </div> 
+            </div>
+
+        </div>
+    </div> 
+</ng-template> 

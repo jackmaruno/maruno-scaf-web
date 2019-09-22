@@ -1,0 +1,64 @@
+<app-header
+  [navbarBrandRouterLink]="['/dashboard']"
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'a Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'a Logo'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'"> 
+
+  <ul class="nav navbar-nav ml-auto" > 
+    <li class="nav-item dropdown" dropdown placement="bottom right">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+        <img [src]="getUsuario()?.foto? getUsuario()?.foto:'assets/img/ico-person.svg'" class="img-avatar" alt="{{getUsuario()?.email}}"/>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown" style="width: 300px;">
+        <div>
+          <img style="display:block;border-radius:50%;width:200px;height:200px;margin:0 auto" [src]="getUsuario()?.foto? getUsuario()?.foto:'assets/img/ico-person.svg'"> 
+        </div>
+        <div class="dropdown-header"><strong>Usuário:</strong> {{getUsuario()?.nome}} </div> 
+        <div>&nbsp;</div>
+        <div class="dropdown-header"><strong>Perfil:</strong> {{getUsuario()?.perfil.nome}} </div> 
+        <div>&nbsp;</div>
+        <div class="dropdown-header"><strong>Login:</strong> {{getUsuario()?.login}} </div> 
+        <div>&nbsp;</div>
+        <div class="dropdown-header"><strong>E-mail:</strong> {{getUsuario()?.email}} </div> 
+        <div>&nbsp;</div>
+        <a class="dropdown-item btn-danger" href="#"><i class="fa fa-lock"></i> Sair</a>
+      </div>
+    </li>
+  </ul>
+</app-header>
+
+
+<div class="app-body">
+
+  <app-sidebar [fixed]="true" [display]="'lg'">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar>
+
+  <!-- Main content -->
+  <main class="main"> 
+    <cui-breadcrumb> 
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" class="btn btn-info btn-block" style="color: white;" (click)="novoLancamento()"><i class="fa fa-plus-circle"></i> &nbsp;Novo Lançamento</button>  
+        </div>
+      </li>
+    </cui-breadcrumb> 
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <!-- Main content END -->
+ 
+  <app-aside [fixed]="true" [display]="true" #sidebarRight  >
+      <app-sidebar-container #sidebar></app-sidebar-container>
+  </app-aside>  
+</div>
+
+
+<app-footer>
+  <span><a href="mail://jackmaruno@gmail.com">jackmaruno@gmail.com</a></span>
+  <span class="ml-auto">by <a href="http://quaemo.com">jackmaruno</a></span>
+</app-footer>

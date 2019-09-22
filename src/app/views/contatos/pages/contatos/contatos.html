@@ -1,0 +1,30 @@
+<div class="card"> 
+    <div class="card-body">
+      <table class="table table-bordered table-striped ">
+        <thead>
+          <tr>
+              <th>ID</th> 
+              <th>Data</th>
+              <th>Nome</th> 
+              <th>E-mail</th>
+              <th>Assunto</th>
+              <th>Mensagem</th> 
+              <th></th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let contato of lista$ | async">
+              <td>{{ contato.codigo }}</td> 
+              <td>{{ contato.dataInclusao }}</td> 
+              <td>{{ contato.nome }}</td> 
+              <td>{{ contato.email }}</td> 
+              <td>{{ contato.assunto }}</td> 
+              <td>{{ contato.mensagem }}</td>  
+            <td> 
+                <button class="btn btn-mini btn-danger" (click)="remover(contato)"><i class="icon-close icons "></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+  </div>  
